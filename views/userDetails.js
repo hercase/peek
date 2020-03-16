@@ -1,0 +1,60 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import {StyleSheet, Text, View} from 'react-native';
+import { Divider } from 'react-native-paper';
+
+function UserDetails(props) {
+
+  const user = props.values.linea;
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.item}>Domicilio</Text>
+          <Text style={styles.text}>{ user.domicilio }</Text>
+        </View>
+        <Divider style={{ margin: 15 }} />
+        <View style={styles.line}>
+          <Text style={styles.item}>Zona:</Text>
+          <Text style={styles.text}>{ user.descripcion } </Text>
+        </View>
+        <View style={styles.line}>
+          <Text style={styles.item}>Localidad:</Text>
+          <Text style={styles.text}>Batan </Text>
+        </View>
+      </View>
+    );
+  }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  line: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  text: {
+    fontSize: 16,
+  },
+  item: {
+    fontSize: 20,
+  }
+});
+
+const mapStateToProps = ( state ) => {
+  return {
+      values : state.teleReducer
+  }
+}
+
+/*const mapDispatchToProps = dispatch => {
+      return {
+        setLineas: data => dispatch(setLineas(data))
+      }
+}*/
+
+
+export default connect(mapStateToProps)(UserDetails);
+
