@@ -17,3 +17,7 @@ Si vamos a utilizar un dispositivo fisico, tenemos que activar la Depuracion USB
 * [React Native Paper](https://callstack.github.io/react-native-paper/)
 * [React Navigation](https://reactnavigation.org/docs/getting-started)
 * [React Redux](https://es.redux.js.org/docs/basico/uso-con-react.html)
+
+## Backend
+
+....

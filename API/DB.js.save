@@ -1,0 +1,11 @@
+var mysql = require('mysql');
+var oMyConnection = mysql.createConnection({
+   host: 'localhost',
+   //user: 'ecolanweb',
+   //password: 'ecolanweb',
+   
+database: 'ecolanweb'
+   //port: 3306
+});
+
+module.exports = oMyConnection;
