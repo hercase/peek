@@ -13,6 +13,12 @@ Luego de configurar el entorno, clonar el repositorio y ejecutar `npm install` p
 
 Si vamos a utilizar un dispositivo fisico, tenemos que activar la Depuracion USB y una vez conectado por cable, el comando `adb devices` deberia listar el dispositivo.
 
+### Para iniciar la aplicación 
+En dos terminales distintas, ejecutar:
+
+`npx react-native run-android`
+`npm start`
+
 ### Librerias principales:
 * [React Native Paper](https://callstack.github.io/react-native-paper/)
 * [React Navigation](https://reactnavigation.org/docs/getting-started)

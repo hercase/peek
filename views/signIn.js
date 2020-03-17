@@ -26,6 +26,7 @@ function SignIn(props) {
         </View>
         <View style={{ flex: 1, flexGrow: 1, justifyContent: "center", margin: 50}}>
           <TextInput style={styles.input}
+            autoFocus={true}
             mode='outlined'
             placeholderTextColor={theme.colors.disabled}
             placeholder="Usuario" 
