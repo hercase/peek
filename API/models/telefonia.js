@@ -9,7 +9,30 @@ module.exports = {
     let sSQLRead = 'CALL usp_get_app_tele_linea_by_num_razon(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
+        oRespData = {
+          error: true,
+          error_object: oError
+        };
+      }
+      else
+      {
+        oRespData = {
+          error: false,
+          error_object: null,
+          data: oRows[0]
+        };
+      }
+      oResponse.write(JSON.stringify(oRespData));
+      oResponse.end();  
+    });
+  },
+
+  ReadUser: function (oData, oResponse) {
+    let sSQLRead = 'CALL usp_get_tele_linea_by_id(?)';
+    let data = [oData.value];
+    oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -32,7 +55,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_datos_tecnicos_by_linea_id(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -56,7 +79,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_cable_pares_by_dt(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -80,7 +103,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_tele_port_by_dt(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -105,7 +128,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_tele_reclamos_by_zona';
     //var data = [oData.account_id];
     oMyConnection.query(sSQLRead, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -130,7 +153,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_tele_reclamos_by_linea(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -154,7 +177,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_tele_orden_by_linea(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError
@@ -178,7 +201,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
     let sSQLRead = 'CALL usp_get_tele_servicios_by_linea(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
-      if(oError) {
+      if(oError || oRows[0].length === 0) {
         oRespData = {
           error: true,
           error_object: oError

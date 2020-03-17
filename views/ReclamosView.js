@@ -6,9 +6,14 @@ import { Text } from 'react-native-paper';
 import ListReclamos from './ListReclamos';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const ReclamosView = ( {navigation} ) => {
+import { NavigationContainer } from '@react-navigation/native';
+
+import { createStackNavigator } from '@react-navigation/stack';
+
+const ReclamosView = ( props ) => {
+
     return (
-    <View>
+    <View >
       <View style={ styles.view_title }>
         <Text style={ styles.view_text }>Reclamos</Text>
         <Icon 
@@ -18,9 +23,9 @@ const ReclamosView = ( {navigation} ) => {
           color={ theme.colors.disabled } 
         />
       </View>
-        <View>
+        <View style={{ flex: 0}} >
         <ScrollView>
-          <ListReclamos/>
+          <ListReclamos data={props}/>
         </ScrollView >
       </View>
     </View>

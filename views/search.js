@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setLinea } from '../redux/actions/index';
 
 import { dataService } from '../services/users';
-import Card from '../components/CardReclamos'
+import Card from '../components/Card'
 
 import {  Text } from 'react-native-paper';
 
@@ -24,6 +24,7 @@ function Search(props) {
     let res;
     res =  await dataService.getLineas(value);
     setLineas(res.data);
+    console.log(res);
     setLoad(false);
   }
   const userSelect = (value) => {
