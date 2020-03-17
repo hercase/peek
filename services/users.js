@@ -10,7 +10,8 @@ export const dataService = {
     getPorts,
     getOrdenLinea,
     getServiciosLinea,
-    getSigIn
+    getSigIn, 
+    getLinea
 };
 
 async function getSigIn(user, pass) {
@@ -43,6 +44,19 @@ async function getAllLineas() {
       value: value
     }
     await api.post('read_users_nro_nom', req)
+    .then(res => {
+        data = res.data;
+    })
+    .catch((error) => console.warn("fetch error:", error))
+    return data;
+}
+
+async function getLinea(value) {
+  let data;
+    let req = {
+      value: value
+    }
+    await api.post('read_user', req)
     .then(res => {
         data = res.data;
     })

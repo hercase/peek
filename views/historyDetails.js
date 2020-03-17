@@ -20,7 +20,6 @@ const HistoryDetails = (props) => {
         let res;
         res =  await dataService.getOrdenLinea(user.id);
         setOrdenes(res.data);
-        console.log(res.data);
     }
     useEffect(() => {
       getOrdenesData();

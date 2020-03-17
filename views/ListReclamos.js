@@ -16,7 +16,7 @@ const ListReclamos = (props) => {
     const [maxString, setmaxString] = useState(0);
     const [index, setIndex] = useState(null);
     const [selected, setSelected] = useState({});
-    
+
     const getReclamosData = async () => {
         let res;
         res =  await dataService.getReclamosZona();
@@ -32,72 +32,30 @@ const ListReclamos = (props) => {
         setIndex(index);
 
     }
+    function fillTableRow(){
+        if (reclamos){
+            return (
+                reclamos.map((reclamo, i) => {
+                    return (
+                    <TouchableOpacity key={i}  onPress={(e) =>{ showMore(reclamo, i)}}>
+                        {
+                            reclamo.numero === selected.numero ? 
+                            <Card reclamo={selected}  maxString={maxString} router={props.data}/>
+                            :
+                            <Card reclamo={reclamo} router={props.data}/>
+                        }
+                    </TouchableOpacity>
+                    );
+                })
+            )
+        } 
+    };
 
-    
-    
-
-        /*function fillTableRow(){
-            if (reclamos){
-                return (
-                    reclamos.map((reclamo, i) => {
-                        return (
-                        <TouchableOpacity key={i}  onPress={(e) =>{ setSections(reclamo)}}>
-                            <Card  key={i} >
-                            <View style={styles.card__title}>
-                                <View>
-                                    <Text style={{ fontSize: 18, color: 'black' }}> {"# "+reclamo.numero}</Text> 
-                                    <Text style={styles.card_body_title} >Inconveniente:</Text>
-                                    <Text style={styles.card_body_desc} >{reclamo.inconveniente}</Text>
-                                </View>
-                                <View>
-                                    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                        <Icon name="phone" color='#011627'/>
-                                    <Text style={styles.card_title_numero}> {reclamo.telefono}</Text> 
-                                </View>
-                                    <Text style={styles.card_title_fecha}>{reclamo.fecha}</Text>
-                                </View>
-                            </View>
-                            <Text style={styles.card_body_title}>Detalle:</Text>
-                            {
-                               isCollapsed ? 
-
-                               
-                                    <Text key={index} style={styles.card_body_desc}>{reclamo.detalle}</Text>
-                               :
-                               <Text numberOfLines={maxString} style={styles.card_body_desc}>{reclamo.detalle}</Text>
-                            }
-                            </Card>
-                        </TouchableOpacity>
-                        );
-                    })
-                )
-            } 
-        };*/
-
-        function fillTableRow(){
-            if (reclamos){
-                return (
-                    reclamos.map((reclamo, i) => {
-                        return (
-                        <TouchableOpacity key={i}  onPress={(e) =>{ showMore(reclamo, i)}}>
-                            {
-                                reclamo.numero === selected.numero ? 
-                                <Card reclamo={selected}  maxString={maxString}/>
-                                :
-                                <Card reclamo={reclamo} />
-                            }
-                        </TouchableOpacity>
-                        );
-                    })
-                )
-            } 
-        };
-
-        return (
-            <View style={{ margin: 10 }}>
-                {fillTableRow()}
-            </View>
-        );
+    return (
+        <View style={{ margin: 10 }}>
+            {fillTableRow()}
+        </View>
+    );
 }
 
 /*
@@ -181,6 +139,6 @@ const mapStateToProps = ( state ) => {
   }
   
   
-export default connect(mapStateToProps, {setReclamo})(ListReclamos);
+export default connect(mapStateToProps)(ListReclamos);
 
 

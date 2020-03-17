@@ -24,6 +24,7 @@ function Search(props) {
     let res;
     res =  await dataService.getLineas(value);
     setLineas(res.data);
+    console.log(res);
     setLoad(false);
   }
   const userSelect = (value) => {
