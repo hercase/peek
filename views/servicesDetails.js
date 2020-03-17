@@ -8,6 +8,7 @@ import { Card, Text } from 'react-native-paper';
 import { StyleSheet, View, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import theme from '../styles';
 
 const ServicesDetails = (props) => {
     const user = props.values.linea;
@@ -59,7 +60,11 @@ const ServicesDetails = (props) => {
                         );
                     })
                 )
-            } 
+            } else {
+              return (
+                <Text style={{ textAlign: 'center', marginTop: 20, color: theme.colors.primary }}> Sin servicios de telefonía </Text>
+                );
+            }
         };
 
         return (
@@ -78,7 +83,7 @@ const ServicesDetails = (props) => {
 
 const styles = StyleSheet.create({
     card: {
-        margin: 15,
+        marginHorizontal: 15,
         marginTop: 5,
         padding: 15,
         backgroundColor: '#fff',

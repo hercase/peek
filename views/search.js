@@ -6,7 +6,7 @@ import { setLinea } from '../redux/actions/index';
 import { dataService } from '../services/users';
 import Card from '../components/Card'
 
-import {  Text } from 'react-native-paper';
+import {  Text, Chip } from 'react-native-paper';
 
 import { StyleSheet, View, ActivityIndicator, TextInput, TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -43,12 +43,29 @@ function Search(props) {
     if (lineas) {
     return (
       lineas.map(( user, i)=> {
+            // Estado de la cuenta
+          const is_Active = () => {
+            let status = (user.is_active) ? 
+            <Chip style={styles.chip__active}> 
+              <Icon name="check" color={ theme.colors.backdrop } /> 
+            </Chip> : 
+            <Chip style={styles.chip__inactive}>
+              <Icon name="times" color={ theme.colors.backdrop } />
+            </Chip> ;
+            return status;
+          }
         return (
+          
         <TouchableOpacity key={i} onPress={(e) =>{ userSelect(user)}}>
-        <Card style={styles.card}>
-          <View style={styles.card__data}>
-            { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
-            <Text style={styles.card__name}>{user.razon_social}</Text>
+        <Card>
+          <View style={styles.card}>
+            <View>
+              { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
+              <Text style={styles.card__name}>{user.razon_social}</Text>
+            </View>
+            <View>
+              { is_Active() }
+            </View> 
           </View>
         </Card>
         </TouchableOpacity>);
@@ -86,6 +103,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   card_input: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -114,7 +137,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   card__number: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: '100',
     color: theme.colors.text,
 
@@ -139,6 +162,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     padding: 50
+  },
+  chip__active: {
+    backgroundColor: '#06D6A0',
+    width: 37,
+    height: 37,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  chip__inactive: {
+    backgroundColor: '#EF476F',
+    width: 37,
+    height: 37,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 

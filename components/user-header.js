@@ -1,15 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
-import { Text, Chip} from 'react-native-paper';
+import { Text } from 'react-native-paper';
 
 const UserHeader = (props) => {
-    const is_Active = () => {
-        let status = (user.is_active) ? 
-        <Chip style={styles.chip__active} size={30}> Activo </Chip> : 
-        <Chip style={styles.chip__inactive} size={30}> Inactivo </Chip> ;
-        return status;
-    }
   const user = props.values.linea;
     return (
       <View style={styles.container}>
@@ -19,7 +13,6 @@ const UserHeader = (props) => {
                     <Text style={styles.header__title}>{ user.telefono }</Text>
                     <Text style={styles.header__subtitle}>{ user.razon_social }</Text>
                 </View>
-                <View>{ is_Active() }</View> 
             </View>
         </View>
      </View>
@@ -44,12 +37,6 @@ const UserHeader = (props) => {
       },
       header__subtitle: {
         fontSize: 17,
-      },
-      chip__active: {
-        backgroundColor: '#06D6A0',
-      },
-      chip__inactive: {
-        backgroundColor: '#EF476F',
       }
 });
 
