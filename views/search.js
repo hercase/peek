@@ -165,15 +165,15 @@ const styles = StyleSheet.create({
   },
   chip__active: {
     backgroundColor: '#06D6A0',
-    width: 37,
-    height: 37,
+    width: 40,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center'
   },
   chip__inactive: {
     backgroundColor: '#EF476F',
-    width: 37,
-    height: 37,
+    width: 40,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center'
   }
