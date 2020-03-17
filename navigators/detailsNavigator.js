@@ -10,7 +10,7 @@ import UserHeader from '../components/user-header';
 import HistoryDetails from '../views/historyDetails';
 import ServicesDetails from '../views/servicesDetails';
 
-
+import theme from '../styles';
 const Tab = createMaterialTopTabNavigator();
 
  function DetailsNavigator(props) {
@@ -22,12 +22,14 @@ const Tab = createMaterialTopTabNavigator();
                 showIcon: true,
                 showLabel: false,
                 labelStyle: { fontSize: 12 },
-                indicatorStyle: { backgroundColor: '#FF1654' }
+                indicatorStyle: { backgroundColor: theme.colors.primary },
+                activeTintColor: theme.colors.primary,
+                inactiveTintColor: theme.colors.disabled,
               }}
           >
                 <Tab.Screen name="Detalles" component={UserDetails} initialParams={props.route.params}
                     options={{
-                        tabBarIcon: ({ color }) => ( <Icon name="user-circle" color={color} size={23} /> ),
+                        tabBarIcon: ({ color }) => ( <Icon name="map-marker-alt" color={color} size={23} /> ),
                         }}
                 />
                 <Tab.Screen name="Datos Técnicos" component={TechnicalDetails}  initialParams={props.route.params}
