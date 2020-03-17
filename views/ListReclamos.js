@@ -16,7 +16,7 @@ const ListReclamos = (props) => {
     const [maxString, setmaxString] = useState(0);
     const [index, setIndex] = useState(null);
     const [selected, setSelected] = useState({});
-    
+
     const getReclamosData = async () => {
         let res;
         res =  await dataService.getReclamosZona();
@@ -32,31 +32,30 @@ const ListReclamos = (props) => {
         setIndex(index);
 
     }
+    function fillTableRow(){
+        if (reclamos){
+            return (
+                reclamos.map((reclamo, i) => {
+                    return (
+                    <TouchableOpacity key={i}  onPress={(e) =>{ showMore(reclamo, i)}}>
+                        {
+                            reclamo.numero === selected.numero ? 
+                            <Card reclamo={selected}  maxString={maxString} router={props.data}/>
+                            :
+                            <Card reclamo={reclamo} router={props.data}/>
+                        }
+                    </TouchableOpacity>
+                    );
+                })
+            )
+        } 
+    };
 
-        function fillTableRow(){
-            if (reclamos){
-                return (
-                    reclamos.map((reclamo, i) => {
-                        return (
-                        <TouchableOpacity key={i}  onPress={(e) =>{ showMore(reclamo, i)}}>
-                            {
-                                reclamo.numero === selected.numero ? 
-                                <Card reclamo={selected}  maxString={maxString}/>
-                                :
-                                <Card reclamo={reclamo} />
-                            }
-                        </TouchableOpacity>
-                        );
-                    })
-                )
-            } 
-        };
-
-        return (
-            <View style={{ padding: 10, paddingBottom: 70 }}>
-                {fillTableRow()}
-            </View>
-        );
+    return (
+        <View style={{ margin: 10 }}>
+            {fillTableRow()}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -117,6 +116,6 @@ const mapStateToProps = ( state ) => {
   }
   
   
-export default connect(mapStateToProps, {setReclamo})(ListReclamos);
+export default connect(mapStateToProps)(ListReclamos);
 
 

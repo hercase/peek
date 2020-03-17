@@ -5,14 +5,14 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import { Text } from 'react-native-paper';
 import ListReclamos from './ListReclamos';
 
-const ReclamosView = ( {navigation} ) => {
+const ReclamosView = ( props ) => {
     return (
-    <View>
+    <View >
       <View style={ styles.view_title }>
         <Text style={ styles.view_text }>Reclamos</Text>
       </View>
       <ScrollView>
-        <ListReclamos/>
+        <ListReclamos data={props}/>
       </ScrollView >
     </View>
     );
