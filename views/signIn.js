@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import {TextInput} from 'react-native-paper'
+import {TextInput, Snackbar} from 'react-native-paper'
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
 import { dataService } from '../services/users';
@@ -10,8 +10,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 function SignIn(props) {
   const [user, onChangeText] = useState('')
   const [pass, onChangePass] = useState('')
+  const [error, setError] = useState(false)
   let inputs = {};
-
   const focusTheField = (id) => {
     inputs[id].focus();
   }
@@ -22,6 +22,8 @@ function SignIn(props) {
     if (res.error === false)
     {   
       props.setToken(res.data.token);
+    } else {
+      setError(true);
     }
   }
     return (
@@ -38,6 +40,7 @@ function SignIn(props) {
             returnKeyType="next" 
             onChangeText={text => {onChangeText(text)}}
             onSubmitEditing={() => { focusTheField('password') }}
+            ref={input => { inputs['user'] = input }}
           />
           <TextInput style={styles.input}
             ref={input => { inputs['password'] = input }}
@@ -61,6 +64,18 @@ function SignIn(props) {
             </TouchableOpacity>
           </View>
         </View>
+        <Snackbar
+          duration={Snackbar.DURATION_SHORT}
+          style={{backgroundColor: theme.colors.background}}
+          visible={error}
+          onDismiss={() => setError(false)}
+          action={{
+            label: 'OK',
+            onPress: () => { focusTheField('user') },
+          }}
+        >
+          <Text style={{color: theme.colors.text}}>Los datos de ingreso son invalidos.</Text>
+        </Snackbar>
       </View>
     );
   }
