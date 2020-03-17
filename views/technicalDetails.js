@@ -33,7 +33,7 @@ const TechnicalDetails = (props) => {
           </View>
           <View>
             <Text style={styles.title}>Shelter</Text>
-            <Text style={styles.text}>{ cablePares.shelter}</Text>
+            <Text style={styles.text}>{cablePares && cablePares.shelter}</Text>
           </View>
         </View>
         <Divider style={{ margin: 15}} />
@@ -43,11 +43,11 @@ const TechnicalDetails = (props) => {
         </View>
         <View style={styles.line}>
           <Text style={styles.title}>Cable: </Text>
-          <Text style={styles.text}>{ cablePares.numero }</Text>
+          <Text style={styles.text}>{ cablePares && cablePares.numero }</Text>
         </View>
         <View style={styles.line}>
           <Text style={styles.title}>Par: </Text>
-          <Text style={styles.text}>{ cablePares.par}</Text>
+          <Text style={styles.text}>{ cablePares && cablePares.par}</Text>
         </View>
         <View style={styles.line}>
           <Text style={styles.title}>Port: </Text>

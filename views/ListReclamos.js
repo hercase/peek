@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { setReclamo } from '../redux/actions/index';
 
 import Card from '../components/CardReclamos';
-import { StyleSheet, View, TouchableOpacity,TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import theme from '../styles';
 
 
@@ -58,29 +58,6 @@ const ListReclamos = (props) => {
     );
 }
 
-/*
-                <Accordion
-                activeSections={section}
-                //for any default active section
-                sections={reclamos}
-                //title and content of accordion
-                touchableComponent={TouchableWithoutFeedback}
-                //which type of touchable component you want
-                //It can be the following Touchables
-                //TouchableHighlight, TouchableNativeFeedback
-                //TouchableOpacity , TouchableWithoutFeedback
-                //expandMultiple={multipleSelect}
-                //Do you want to expand mutiple at a time or single at a time
-                renderHeader={renderHeader}
-                //Header Component(View) to render
-                renderContent={renderContent}
-                //Content Component(View) to render
-                duration={400}
-                //Duration for Collapse and expand
-                onChange={setSections}
-                //setting the state of active sections
-                />
-                */
 const styles = StyleSheet.create({
     card__title: { 
         fontSize: 16,
