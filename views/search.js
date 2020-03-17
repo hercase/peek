@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { setLinea } from '../redux/actions/index';
 
 import { dataService } from '../services/users';
-import Card from '../components/CardReclamos'
+import Card from '../components/Card'
 
 import {  Text } from 'react-native-paper';
 
-import { StyleSheet, View, ActivityIndicator, TextInput } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, TextInput, TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -35,17 +35,14 @@ function Search(props) {
       return (
         lineas.map(( user, i)=> {
           return (
-          <Card key={i} style={styles.card} onPress={(e) =>{ userSelect(user)}}>
+            <TouchableOpacity onPress={(e) =>{ userSelect(user)}}>
+          <Card key={i} style={styles.card}>
             <View style={styles.card__data}>
               { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
               <Text style={styles.card__name}>{user.razon_social}</Text>
             </View>
-            <Icon
-                    name = "plus"
-                    size = {20}
-                    style = {styles.card__icon}
-                    onPress={(e) =>{ userSelect(user)}} />
-          </Card>);
+          </Card>
+          </TouchableOpacity>);
         }));
         }else { return <Text style={styles.helper}> La busqueda no coincide con ningun dato existente.</Text>}
     };
