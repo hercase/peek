@@ -17,5 +17,5 @@ var app = require('./app');
 // var sv = https.createServer(options, app);
 
  app.listen(4000, function(oReq, oRes) {
-    console.log("API EcolApp");   
+    console.log("API Peek");   
   });

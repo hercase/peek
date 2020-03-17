@@ -17,6 +17,7 @@ Si vamos a utilizar un dispositivo fisico, tenemos que activar la Depuracion USB
 En dos terminales distintas, ejecutar:
 
 `npx react-native run-android`
+
 `npm start`
 
 ### Librerias principales:

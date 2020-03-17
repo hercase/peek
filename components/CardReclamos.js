@@ -1,16 +1,33 @@
 import React from 'react';
-import { StyleSheet, View,Text} from 'react-native';
+import { StyleSheet, View,Text, TouchableOpacity} from 'react-native';
 import theme from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-import * as Animatable from 'react-native-animatable';
+// Services
+import { dataService } from '../services/users';
+// Redux
+import { connect } from 'react-redux';
+import { setLinea } from '../redux/actions/index';
 
 const CardReclamos = ( props ) => {
 
    const reclamo = props.reclamo;
    let maxString = 1;
+
    if (props.maxString){
         maxString = props.maxString;
+   }
+
+   const userInfo = async (value) => {
+       let res;
+       res = await dataService.getLineas(value);
+       if (res.error === false)
+       {    
+
+            props.setLinea(res.data[0]);
+            props.router.navigation.navigate('UserInformation')
+       }
+
    }
 
 
@@ -27,10 +44,17 @@ const CardReclamos = ( props ) => {
                 <View>
                     <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                         <Icon name="phone" color='#011627'/>
-                    <Text style={styles.card_title_numero}> {reclamo.telefono}</Text> 
+                         <Text style={styles.card_title_numero}> {reclamo.telefono}</Text>
+                    </View>
+                        <Text style={styles.card_title_fecha}>{reclamo.fecha}</Text> 
+
+                    <TouchableOpacity onPress={(e) => {userInfo(reclamo.telefono)}}>
+                    <View style={styles.card_icon}  >
+                        <Icon name="address-card" color={theme.colors.primary} size={35}  />
+                    </View>
+                    </TouchableOpacity>
                 </View>
-                    <Text style={styles.card_title_fecha}>{reclamo.fecha}</Text>
-                </View>
+                
             </View>
             <Text style={styles.card_body_title}>Detalle:</Text>
 
@@ -65,7 +89,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
     },
     card_title_fecha: { 
-        textAlign: 'right',
+        textAlign: 'center',
         fontSize: 14,
     },
     card_body_title: {
@@ -73,9 +97,21 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     card_body_desc: {
-        fontSize: 14,
-        
+        fontSize: 14,  
+    },
+    card_icon: { 
+        marginTop: 10,
+        alignItems: 'flex-end',
+
     },
 });
 
-export default CardReclamos;
+
+const mapStateToProps = ( state ) => {
+    return {
+        values : state.teleReducer
+    }
+  }
+  
+  
+  export default connect(mapStateToProps, {setLinea})(CardReclamos);
