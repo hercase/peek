@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, TextInput, Text, View, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {TextInput} from 'react-native-paper'
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
 import { dataService } from '../services/users';
@@ -23,14 +24,17 @@ function SignIn(props) {
         <View style={{ flex: 1, justifyContent: 'flex-end'}}>
           <Image style={styles.logo} source={require('../assets/peek-dark.png')} />
         </View>
-        <View style={{ flex: 1, flexGrow: 1, justifyContent: "center", marginVertical: 40}}>
+        <View style={{ flex: 1, flexGrow: 1, justifyContent: "center", margin: 50}}>
           <TextInput style={styles.input}
+            autoFocus={true}
+            mode='outlined'
             placeholderTextColor={theme.colors.disabled}
             placeholder="Usuario" 
             returnKeyType="next" 
             onChangeText={text => {onChangeText(text)}}
           />
           <TextInput style={styles.input}
+            mode='outlined'
             placeholderTextColor={theme.colors.disabled}
             placeholder="Contraseña"
             returnKeyType="go"
@@ -43,7 +47,7 @@ function SignIn(props) {
               style={styles.button}
               onPress = {(e) => submit()}
             >
-              <Text style={{fontSize: 20, color: 'white' }}>INGRESAR</Text>
+              <Text style={{fontSize: 18, color: 'white' }}>INGRESAR</Text>
               <Icon name='chevron-right' style={styles.icon}/>
             </TouchableOpacity>
           </View>
@@ -62,31 +66,30 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: theme.colors.backdrop,   
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 30,
+    margin: 5,
     fontSize: 18,
     textAlign: 'center',
     width: 300,
+    height: 50
   },
   button: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     backgroundColor: theme.colors.accent,
-    height: 60,
-    width: 200,
+    height: 50,
+    width: 180,
     borderRadius: 50,
     
   },
   font: {
     color: theme.colors.background, 
-    fontSize: 20,
+    fontSize: 15,
     letterSpacing: 1,
   },
   icon: {
     color: theme.colors.background, 
-    fontSize: 25,
+    fontSize: 18,
   },
   logo: {
     height: 85, 
