@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import { dataService } from '../services/users';
 // Redux
 import { connect } from 'react-redux';
-import { setLinea } from '../redux/actions/index';
+import { setLinea, setReclamo } from '../redux/actions/index';
 
 const CardReclamos = ( props ) => {
 
@@ -23,7 +23,7 @@ const CardReclamos = ( props ) => {
        res = await dataService.getLineas(value);
        if (res.error === false)
        {    
-
+            props.setReclamo(reclamo)
             props.setLinea(res.data[0]);
             props.router.navigation.navigate('UserInformation')
        }
@@ -33,8 +33,8 @@ const CardReclamos = ( props ) => {
 
 
     return (
+        <TouchableOpacity onPress={(e) => {userInfo(reclamo.telefono)}}>
         <View style={styles.card}> 
-
             <View style={styles.card__title}>
                 <View>
                     <Text style={{ fontSize: 18, color: 'black' }}> {"# "+reclamo.numero}</Text> 
@@ -47,21 +47,13 @@ const CardReclamos = ( props ) => {
                          <Text style={styles.card_title_numero}> {reclamo.telefono}</Text>
                     </View>
                         <Text style={styles.card_title_fecha}>{reclamo.fecha}</Text> 
-
-                    <TouchableOpacity onPress={(e) => {userInfo(reclamo.telefono)}}>
-                    <View style={styles.card_icon}  >
-                        <Icon name="address-card" color={theme.colors.primary} size={35}  />
-                    </View>
-                    </TouchableOpacity>
                 </View>
-                
             </View>
             <Text style={styles.card_body_title}>Detalle:</Text>
-
-                <Text numberOfLines={maxString} style={styles.card_body_desc}>{reclamo.detalle}</Text>
-
-
+            <Text numberOfLines={maxString} style={styles.card_body_desc}>{reclamo.detalle}</Text>
         </View>
+
+        </TouchableOpacity>
     );
 };
 
@@ -114,4 +106,4 @@ const mapStateToProps = ( state ) => {
   }
   
   
-  export default connect(mapStateToProps, {setLinea})(CardReclamos);
+  export default connect(mapStateToProps, {setLinea, setReclamo})(CardReclamos);

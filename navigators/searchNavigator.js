@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { setHide } from '../redux/actions/index';
+import { setHide, setReclamo } from '../redux/actions/index';
 import { withTheme } from 'react-native-paper';
 import { StyleSheet} from 'react-native';
 
@@ -16,6 +16,10 @@ import DetailsNavigator  from './detailsNavigator';
 const Stack = createStackNavigator();
 
 function SearchNavigator( props ) {
+  /*if (props.values.reclamo)
+  {
+    props.setReclamo(false);
+  }*/
   return (
     <Stack.Navigator
         screenOptions={{
@@ -53,4 +57,4 @@ const mapStateToProps = ( state ) => {
 }
 
 
-export default connect(mapStateToProps, {setHide})(withTheme(SearchNavigator));
+export default connect(mapStateToProps, {setHide, setReclamo})(withTheme(SearchNavigator));

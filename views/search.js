@@ -1,7 +1,7 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import theme from '../styles';
 import { connect } from 'react-redux';
-import { setLinea } from '../redux/actions/index';
+import { setLinea, setReclamo } from '../redux/actions/index';
 
 import { dataService } from '../services/users';
 import Card from '../components/Card'
@@ -14,19 +14,21 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 function Search(props) {
+  const stop = false;
   const [lineas, setLineas] = useState([]);
   const [value, onChangeText] = useState('')
   const [dataload, setLoad] = useState(false)
 
-
   const getLineasData = async () => {
+    props.setLinea(false)
+    props.setReclamo(false);
     setLoad(true);
     let res;
     res =  await dataService.getLineas(value);
     setLineas(res.data);
-    console.log(res);
     setLoad(false);
   }
+
   const userSelect = (value) => {
     props.setLinea(value);
     props.navigation.navigate('UserInformation')
@@ -36,14 +38,14 @@ function Search(props) {
       return (
         lineas.map(( user, i)=> {
           return (
-            <TouchableOpacity onPress={(e) =>{ userSelect(user)}}>
-          <Card key={i} style={styles.card}>
-            <View style={styles.card__data}>
-              { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
-              <Text style={styles.card__name}>{user.razon_social}</Text>
-            </View>
-          </Card>
-          </TouchableOpacity>);
+            <TouchableOpacity key={i} onPress={(e) =>{ userSelect(user)}}>
+              <Card key={i} style={styles.card}>
+                <View style={styles.card__data}>
+                  { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
+                  <Text style={styles.card__name}>{user.razon_social}</Text>
+                </View>
+              </Card>
+            </TouchableOpacity>);
         }));
         }else { return <Text style={styles.helper}> La busqueda no coincide con ningun dato existente.</Text>}
     };
@@ -140,4 +142,4 @@ const mapStateToProps = ( state ) => {
 }
 
 
-export default connect(mapStateToProps, {setLinea})(Search);
+export default connect(mapStateToProps, {setLinea, setReclamo})(Search);
