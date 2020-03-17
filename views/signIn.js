@@ -10,6 +10,11 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 function SignIn(props) {
   const [user, onChangeText] = useState('')
   const [pass, onChangePass] = useState('')
+  let inputs = {};
+
+  const focusTheField = (id) => {
+    inputs[id].focus();
+  }
 
   const submit = async () => {
     let res;
@@ -32,14 +37,18 @@ function SignIn(props) {
             placeholder="Usuario" 
             returnKeyType="next" 
             onChangeText={text => {onChangeText(text)}}
+            onSubmitEditing={() => { focusTheField('password') }}
           />
           <TextInput style={styles.input}
+            ref={input => { inputs['password'] = input }}
             mode='outlined'
             placeholderTextColor={theme.colors.disabled}
             placeholder="Contraseña"
             returnKeyType="go"
             secureTextEntry={true} 
-            onChangeText={text => {onChangePass(text)}} /> 
+            onChangeText={text => {onChangePass(text)}} 
+            onSubmitEditing={(e) => submit()}
+            /> 
           </View>
         <View style={{ flex: 1 }}> 
           <View style={styles.buttonContainer}>   
