@@ -8,6 +8,7 @@ import { Card, Text } from 'react-native-paper';
 import { StyleSheet, View, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import theme from '../styles';
 
 const ServicesDetails = (props) => {
     const user = props.values.linea;
@@ -59,7 +60,11 @@ const ServicesDetails = (props) => {
                         );
                     })
                 )
-            } 
+            } else {
+              return (
+                <Text style={{ textAlign: 'center', marginTop: 20, color: theme.colors.primary }}> Sin servicios de telefonía </Text>
+                );
+            }
         };
 
         return (
@@ -78,7 +83,7 @@ const ServicesDetails = (props) => {
 
 const styles = StyleSheet.create({
     card: {
-        margin: 15,
+        marginHorizontal: 15,
         marginTop: 5,
         padding: 15,
         backgroundColor: '#fff',
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
             width: 0,
             height: 2,
         },
-        elevation: 2,
+        elevation: 1,
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
         borderRadius: 15,
@@ -103,9 +108,9 @@ const styles = StyleSheet.create({
         fontSize: 17,
     },
     card_title_fecha: { 
-        textAlign: 'right',
-        color: '#011627',
-        fontSize: 14,
+      textAlign: 'right',
+      color: theme.colors.primary,
+      fontSize: 14,
     },
     card_body_title: {
         color: '#ACB5CA',

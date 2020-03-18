@@ -93,16 +93,15 @@ const styles = StyleSheet.create({
     margin: 5,
     fontSize: 18,
     textAlign: 'center',
-    width: 300,
-    height: 50
+    width: 250,
   },
   button: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     backgroundColor: theme.colors.accent,
-    height: 50,
-    width: 180,
+    height: 45,
+    width: 160,
     borderRadius: 50,
     
   },
