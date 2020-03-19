@@ -80,6 +80,14 @@ api.post('/read_servicios_linea', function(oReq, oRes) {
   telefonia.ReadServiciosLinea(oData, oRes);
 });
 
+api.get('/', function(oReq, oRes) {
+  //let oData = {};
+  oRes.send('Hola soy la Api');
+
+  //oData = oReq.body; 
+  //telefonia.ReadServiciosLinea(oData, oRes);
+});
+
 
 
 
