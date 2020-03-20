@@ -33,12 +33,12 @@ const HistoryDetails = (props) => {
                             <Card  key={i} style={styles.card}>
                             <View style={styles.card__title}>
                                 <View>
-                                    <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}> {"# "+orden.numero}</Text> 
+                                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{"Orden # "+orden.numero}</Text> 
                                     <Text style={styles.card_body_title} >Inconveniente:</Text>
-                                    <Text style={styles.card_body_desc} >{orden.inconveniente}</Text>
                                 </View>
                                 <View>
                                     <Text style={styles.card_title_fecha}>{orden.fecha}</Text>
+                                    <Text style={styles.card_body_desc} >{orden.inconveniente}</Text>
                                 </View>
                             </View>
                             <Text style={styles.card_body_title}>Detalle:</Text>
