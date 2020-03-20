@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { dataService } from '../services/users';
 
 import { connect } from 'react-redux';
-import { setLinea } from '../redux/actions/index';
+import { setLinea, setHide } from '../redux/actions/index';
 
 import Card from '../components/CardReclamos';
 import { StyleSheet, View, TouchableOpacity, Text, SafeAreaView } from 'react-native';
@@ -17,9 +17,11 @@ const ListReclamos = (props) => {
     const [selected, setSelected] = useState({});
 
     const getReclamosData = async () => {
+        //props.setHide(true);
         let res;
         res =  await dataService.getReclamosZona();
         setReclamos(res.data);
+        props.setHide(true);
     }
     useEffect(() => {
         props.setLinea(false)
@@ -114,6 +116,6 @@ const mapStateToProps = ( state ) => {
   }
   
   
-export default connect(mapStateToProps, {setLinea})(ListReclamos);
+export default connect(mapStateToProps, {setLinea, setHide})(ListReclamos);
 
 
