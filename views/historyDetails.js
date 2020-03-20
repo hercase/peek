@@ -12,9 +12,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const HistoryDetails = (props) => {
     const user = props.values.linea;
     const stop = false;
-
     const [ordenes, setOrdenes] = useState([]);
-    const [maxString, setmaxString] = useState(1);
 
     const getOrdenesData = async () => {
         let res;
@@ -49,7 +47,11 @@ const HistoryDetails = (props) => {
                         );
                     })
                 )
-            } 
+            } else {
+                return (
+                  <Text style={{ textAlign: 'center', marginTop: 20, color: theme.colors.primary }}> Sin historial de ordenes. </Text>
+                  );
+              }
         };
 
         return (

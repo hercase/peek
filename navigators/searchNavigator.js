@@ -13,28 +13,27 @@ function SearchNavigator( props ) {
 
   return (
     <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: theme.colors.backgroundDark,
-          }
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.colors.backgroundDark,
+        }
+      }}
+    >
+      <Stack.Screen name="Search" component={Search} 
+        options={{
+          headerTitleAlign: 'center',
+          headerTitle: () => ( <BarLogo /> ),
         }}
-      >
-          <Stack.Screen name="Search" component={Search} 
-            options={{
-              headerTitleAlign: 'center',
-              headerTitle: () => ( <BarLogo /> ),
-          }}
-          /> 
+      /> 
 
-          <Stack.Screen name="UserInformation" component={DetailsNavigator}
-          initialParams={props.route} 
-          options={{ 
-              headerTintColor:'white',
-              headerTitle: 'Informacion del usuario',
-              }} 
-          />
-
-      </Stack.Navigator>
+      <Stack.Screen name="UserInformation" component={DetailsNavigator}
+        initialParams={props.route} 
+        options={{ 
+          headerTintColor:'white',
+          headerTitle: 'Informacion del usuario',
+        }} 
+      />
+    </Stack.Navigator>
   );
 }
 

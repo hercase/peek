@@ -33,9 +33,11 @@ function SignIn(props) {
         </View>
         <View style={{ flex: 1, flexGrow: 1, justifyContent: "center", margin: 50}}>
           <TextInput style={styles.input}
+            dense={true}
             autoFocus={true}
             mode='outlined'
             placeholderTextColor={theme.colors.disabled}
+            autoCompleteType='username'
             placeholder="Usuario" 
             returnKeyType="next" 
             onChangeText={text => {onChangeText(text)}}
@@ -43,9 +45,11 @@ function SignIn(props) {
             ref={input => { inputs['user'] = input }}
           />
           <TextInput style={styles.input}
+            dense={true}
             ref={input => { inputs['password'] = input }}
             mode='outlined'
             placeholderTextColor={theme.colors.disabled}
+            autoCompleteType='password'
             placeholder="Contraseña"
             returnKeyType="go"
             secureTextEntry={true} 
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.backgroundDark,
   },
   input: {
-    backgroundColor: theme.colors.backdrop,   
+    backgroundColor: theme.colors.backgroundLight,   
     margin: 5,
     fontSize: 18,
     textAlign: 'center',

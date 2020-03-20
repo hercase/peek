@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import UserDetails from '../views/userDetails';
 import TechnicalDetails from '../views/technicalDetails';
 import ReclamoDetails from '../views/reclamoDetails';
-import UserHeader from '../components/user-header';
+import UserHeader from '../components/UserHeaderComponent';
 import HistoryDetails from '../views/historyDetails';
 import ServicesDetails from '../views/servicesDetails';
 
