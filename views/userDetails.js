@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {StyleSheet, Text, View} from 'react-native';
 import { Divider } from 'react-native-paper';
 import Card from '../components/Card';
+import theme from '../styles';
 
 function UserDetails(props) {
 
@@ -31,7 +32,6 @@ function UserDetails(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 10,
   },
   line: {
@@ -39,12 +39,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
   },
   item: {
-    fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: theme.colors.backgroundDark
+  },
 });
 
 const mapStateToProps = ( state ) => {

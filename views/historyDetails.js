@@ -1,26 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,useCallback} from 'react';
 import theme from '../styles';
 import { dataService } from '../services/users';
 
 import { connect } from 'react-redux';
 
-import { Card, Text } from 'react-native-paper';
+import { Card, Text, ActivityIndicator } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
 const HistoryDetails = (props) => {
     const user = props.values.linea;
-    const stop = false;
+    var stop = false;
 
     const [ordenes, setOrdenes] = useState([]);
-    const [maxString, setmaxString] = useState(1);
 
-    const getOrdenesData = async () => {
+    const getOrdenesData = useCallback(async () => {
         let res;
         res =  await dataService.getOrdenLinea(user.id);
         setOrdenes(res.data);
-    }
+    })
     useEffect(() => {
       getOrdenesData();
     },[stop])
@@ -53,10 +52,13 @@ const HistoryDetails = (props) => {
         };
 
         return (
-            <View style={{ marginTop: 10 }}>
+            <View style={{ marginTop: 10 }} onRefresh={getOrdenesData}>
+                { getOrdenesData()  ?
               <ScrollView>
                 {fillTableRow()}
                 </ScrollView>
+                : <ActivityIndicator />
+                }
             </View>
         );
 }

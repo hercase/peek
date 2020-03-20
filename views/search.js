@@ -14,13 +14,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 function Search(props) {
-  const stop = false;
   const [lineas, setLineas] = useState([]);
-  const [value, onChangeText] = useState('')
+  const [value, onChangeValue] = useState('')
   const [dataload, setLoad] = useState(false)
 
   const getLineasData = async () => {
-    setLineas('')
+    //setLineas('')
     setLoad(true);
     let res;
     res =  await dataService.getLineas(value);
@@ -125,7 +124,7 @@ function Search(props) {
         placeholder="Teléfono o razon social ..." 
         returnKeyType="search" 
         onSubmitEditing={getLineasData} 
-        onChangeText={text => {onChangeText(text), setLineas('')}} />
+        onChangeText={text => {onChangeValue(text)}} />
         { dataload && <ActivityIndicator />}
       </View>
       <View style={styles.container}>
