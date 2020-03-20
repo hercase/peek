@@ -38,83 +38,36 @@ function Search(props) {
       if (lineas) {
       return (
         lineas.map(( user, i)=> {
+          // Estado de la cuenta
+          const is_Active = () => {
+            let status = (user.is_active) ? 
+            <Chip style={styles.chip__active}> 
+              <Icon name="check" color={ theme.colors.backgroundLight } /> 
+            </Chip> : 
+            <Chip style={styles.chip__inactive}>
+              <Icon name="times" color={ theme.colors.backgroundLight } />
+            </Chip> ;
+            return status;
+          }
           return (
             <TouchableOpacity key={i} onPress={(e) =>{ userSelect(user)}}>
-              <Card key={i} style={styles.card}>
-                <View style={styles.card__data}>
-                  { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
-                  <Text style={styles.card__name}>{user.razon_social}</Text>
+              <Card>
+                <View style={styles.card}>
+                  <View>
+                    { ( user.telefono ) ? <Text style={styles.card__number}>{user.telefono}</Text> : <Text style={styles.card__number}>Sin numero</Text>}
+                    <Text style={styles.card__name}>{user.razon_social}</Text>
+                  </View>
+                  <View>
+                    { is_Active() }
+                  </View> 
                 </View>
               </Card>
             </TouchableOpacity>);
         }));
-        }else { return <Text style={styles.helper}> La busqueda no coincide con ningun dato existente.</Text>}
+        } else { 
+          return <Text style={styles.helper}> La busqueda no coincide con ningun dato existente.</Text>
+        }
     };
-
-    const styles = StyleSheet.create({
-
-      container: {
-        flex: 1,
-        alignItems: 'stretch',
-        flexDirection: 'column',
-        marginLeft: 20,
-        marginRight: 20,
-      },
-      card_input: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        backgroundColor: theme.colors.backdrop,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        paddingLeft: 20,
-        paddingRight:20,
-        height: 60,
-        marginBottom: 20,
-      },
-    
-      input: {
-        flexDirection: "row",
-        flexGrow: 1,
-        backgroundColor: theme.colors.backdrop,
-        color: theme.colors.text,
-        alignItems: 'center',
-        height: 60,
-        fontSize: 16,
-      },
-      card__number: {
-        fontSize: 25,
-        fontWeight: '100',
-        color: theme.colors.text,
-
-      },
-      card__name: {
-        fontSize: 16,
-        color: theme.colors.text,
-        maxWidth: 190,
-      },
-      card__icon: {
-        display: 'flex',
-        textAlign: 'center',
-        lineHeight: 40,
-        width: 40,
-        height: 40,
-        backgroundColor: theme.colors.primary,
-        color: '#FFF',
-        borderRadius: 30,
-      },
-      helper: {
-        color: theme.colors.primary,
-        textAlign: 'center',
-        marginTop: 20,
-        padding: 50
-      }
-    });
-
     return (
       <>
       <View style={styles.card_input}>
@@ -125,7 +78,9 @@ function Search(props) {
         placeholder="Teléfono o razon social ..." 
         returnKeyType="search" 
         onSubmitEditing={getLineasData} 
-        onChangeText={text => {onChangeText(text), setLineas('')}} />
+        onChangeText={text => {onChangeText(text), setLineas('')}} 
+        autoFocus={true}
+        />
         { dataload && <ActivityIndicator />}
       </View>
       <View style={styles.container}>
@@ -155,7 +110,7 @@ const styles = StyleSheet.create({
   card_input: {
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: theme.colors.backdrop,
+    backgroundColor: theme.colors.backgroundLight,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -172,7 +127,7 @@ const styles = StyleSheet.create({
   input: {
     flexDirection: "row",
     flexGrow: 1,
-    backgroundColor: theme.colors.backdrop,
+    backgroundColor: theme.colors.backgroundLight,
     color: theme.colors.text,
     alignItems: 'center',
     height: 60,
