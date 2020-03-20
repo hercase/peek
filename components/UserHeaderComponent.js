@@ -29,9 +29,14 @@ function UserHeader(props){
       },
     header__title: {
         fontSize: theme.fontsizes.t1,
+        fontWeight: 'bold',
+        color: theme.colors.primary
       },
       header__subtitle: {
-        fontSize: theme.fontsizes.t2,
+        fontSize: theme.fontsizes.t4,
+        color: theme.colors.backgroundDark,
+
+
       }
 });
 
