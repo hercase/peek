@@ -6,7 +6,7 @@ var db_config = {
 	host: 'localhost',
 	user: 'coopset',
    password: 'c00ps3t',
-   database: 'ecoapp'
+   database: 'peek'
 }
 /*
 	user: 'ecoapp',

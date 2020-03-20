@@ -49,7 +49,7 @@ const ServicesDetails = (props) => {
                           <Card  key={i} style={styles.card}>
                             <View style={styles.card__title}>
                                 <View>
-                                    <Text style={styles.card_body_title} >Servicio {servicio.tipo}</Text>
+                                    <Text style={styles.card_body_title} >Servicio { servicio.tipo.toLowerCase()}</Text>
                                     <Text style={styles.card_body_desc} >{servicio.servicio}</Text>
                                 </View>
                                 <View>
@@ -114,12 +114,9 @@ const styles = StyleSheet.create({
     },
     card_body_title: {
         color: '#ACB5CA',
-        fontSize: 14,
     },
     card_body_desc: {
         color: '#42484F',
-        fontSize: 14,
-        
     },
 });
 

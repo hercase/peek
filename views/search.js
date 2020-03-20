@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     flexDirection: 'column',
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: 10,
+    marginRight: 10,
   },
   card: {
     display: 'flex',
