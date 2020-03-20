@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.backgroundDark,
   },
   input: {
-    backgroundColor: theme.colors.backdrop,   
+    backgroundColor: theme.colors.backgroundLight,   
     margin: 5,
     fontSize: 18,
     textAlign: 'center',

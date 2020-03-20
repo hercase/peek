@@ -42,10 +42,10 @@ function Search(props) {
           const is_Active = () => {
             let status = (user.is_active) ? 
             <Chip style={styles.chip__active}> 
-              <Icon name="check" color={ theme.colors.backdrop } /> 
+              <Icon name="check" color={ theme.colors.backgroundLight } /> 
             </Chip> : 
             <Chip style={styles.chip__inactive}>
-              <Icon name="times" color={ theme.colors.backdrop } />
+              <Icon name="times" color={ theme.colors.backgroundLight } />
             </Chip> ;
             return status;
           }
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   card_input: {
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: theme.colors.backdrop,
+    backgroundColor: theme.colors.backgroundLight,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   input: {
     flexDirection: "row",
     flexGrow: 1,
-    backgroundColor: theme.colors.backdrop,
+    backgroundColor: theme.colors.backgroundLight,
     color: theme.colors.text,
     alignItems: 'center',
     height: 60,

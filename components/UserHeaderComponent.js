@@ -1,39 +1,37 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
+import theme from '../styles';
 
-const UserHeader = (props) => {
+function UserHeader(props){
   const user = props.values.linea;
     return (
-      <View style={styles.container}>
-        <View style={styles.line}>
+      <Fragment>
         <View style={styles.header}>
-                <View>
-                    <Text style={styles.header__title}>{ user.telefono }</Text>
-                    <Text style={styles.header__subtitle}>{ user.razon_social }</Text>
-                </View>
-            </View>
+          <View>
+            <Text style={styles.header__title}>{ user.telefono }</Text>
+            <Text style={styles.header__subtitle}>{ user.razon_social }</Text>
+          </View>
         </View>
-     </View>
+     </Fragment>
     );
   }
+
   const styles = StyleSheet.create({
     header: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems:'center',
-        fontSize: 18,
-        backgroundColor: 'white',
+        backgroundColor: theme.colors.backgroundLight,
         padding: 25
       },
     header__title: {
-        fontSize: 28,
-        fontFamily: 'Nunito',
+        fontSize: theme.fontsizes.t1,
       },
       header__subtitle: {
-        fontSize: 17,
+        fontSize: theme.fontsizes.t2,
       }
 });
 
