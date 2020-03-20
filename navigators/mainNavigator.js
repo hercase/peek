@@ -24,7 +24,6 @@ import SignIn from '../views/signIn';
 import search from '../views/search';
 
 const Stack = createStackNavigator();
-
 const Tab = createMaterialBottomTabNavigator();
 
 function MainNavigation(props) {

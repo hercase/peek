@@ -18,9 +18,6 @@ const UserHeader = (props) => {
      </View>
     );
   }
-
-
-
   const styles = StyleSheet.create({
     header: {
         display: 'flex',

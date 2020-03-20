@@ -10,8 +10,7 @@ const theme = {
         "background": "#F7F6F9", 
         "backgroundDark": "#011627",
         "disabled": "#95a5a6", 
-        "placeholder": '#41434F', 
-        "surface": "#ffffff", 
+        "title" : "#003459",
         "text": "#41434F",
     },
     "dark":false,
@@ -20,6 +19,14 @@ const theme = {
             "fontFamily":"Roboto-Regular",
             "fontWeight":"normal"
         },
+    "fontsizes": {
+            "h1": 28,
+            "h2": 20,
+            "h3": 16,   
+            "t1": 26,
+            "t2": 18,
+            "t3": 14,               
+        }
     },
     "roundness":4
 };
