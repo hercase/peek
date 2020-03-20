@@ -11,8 +11,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const HistoryDetails = (props) => {
     const user = props.values.linea;
+<<<<<<< HEAD
     var stop = false;
 
+=======
+    const stop = false;
+>>>>>>> 8e2db46098b81ab0b4b5be9f11ac126e3456987c
     const [ordenes, setOrdenes] = useState([]);
 
     const getOrdenesData = useCallback(async () => {
@@ -48,7 +52,11 @@ const HistoryDetails = (props) => {
                         );
                     })
                 )
-            } 
+            } else {
+                return (
+                  <Text style={{ textAlign: 'center', marginTop: 20, color: theme.colors.primary }}> Sin historial de ordenes. </Text>
+                  );
+              }
         };
 
         return (

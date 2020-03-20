@@ -49,7 +49,7 @@ const ReclamosView = ( props ) => {
 
 const styles = StyleSheet.create({
   view_title: {
-    backgroundColor: theme.colors.backdrop,
+    backgroundColor: theme.colors.backgroundLight,
     marginBottom: 0, 
     paddingVertical: 15,
     paddingHorizontal: 25,
