@@ -12,7 +12,7 @@ const ReclamosView = ( props ) => {
         <Text style={ styles.view_text }>Reclamos</Text>
       </View>
       <ScrollView>
-        <ListReclamos data={props}/>
+        <ListReclamos {...props}/>
       </ScrollView >
     </View>
     );

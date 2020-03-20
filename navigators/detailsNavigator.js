@@ -1,11 +1,12 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import UserDetails from '../views/userDetails';
 import TechnicalDetails from '../views/technicalDetails';
+import ReclamoDetails from '../views/reclamoDetails';
 import UserHeader from '../components/user-header';
 import HistoryDetails from '../views/historyDetails';
 import ServicesDetails from '../views/servicesDetails';
@@ -26,6 +27,7 @@ const Tab = createMaterialTopTabNavigator();
                 activeTintColor: theme.colors.primary,
                 inactiveTintColor: theme.colors.disabled,
               }}
+              
           >
                 <Tab.Screen name="Detalles" component={UserDetails} initialParams={props.route.params}
                     options={{
@@ -47,8 +49,23 @@ const Tab = createMaterialTopTabNavigator();
                         tabBarIcon: ({ color }) => ( <Icon name="list-alt" color={color} size={23} /> ),
                         }}
                 />
+                { props.values.reclamo ?
+                    <Tab.Screen name="Detalle Reclamo" component={ReclamoDetails} initialParams={props.route.params}
+                        options={{
+                            
+                            tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={23} /> ),
+                        }}
+                    />
+                    : null }
           </Tab.Navigator>
       </>
   );
 }
-export default DetailsNavigator;
+const mapStateToProps = ( state ) => {
+    return {
+        values : state.teleReducer
+    }
+  }
+  
+  
+  export default connect(mapStateToProps)(DetailsNavigator);

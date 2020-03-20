@@ -1,10 +1,4 @@
 import React from 'react';
-
-import { connect } from 'react-redux';
-import { setHide } from '../redux/actions/index';
-import { withTheme } from 'react-native-paper';
-import { StyleSheet} from 'react-native';
-
 import BarLogo from '../components/barLogo';
 import theme from '../styles';
 
@@ -16,6 +10,7 @@ import DetailsNavigator  from './detailsNavigator';
 const Stack = createStackNavigator();
 
 function SearchNavigator( props ) {
+
   return (
     <Stack.Navigator
         screenOptions={{
@@ -42,15 +37,5 @@ function SearchNavigator( props ) {
       </Stack.Navigator>
   );
 }
-const styles = StyleSheet.create({
 
-  });
-
-const mapStateToProps = ( state ) => {
-  return {
-      values : state.teleReducer
-  }
-}
-
-
-export default connect(mapStateToProps, {setHide})(withTheme(SearchNavigator));
+export default SearchNavigator;

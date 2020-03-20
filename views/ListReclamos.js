@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { dataService } from '../services/users';
 
 import { connect } from 'react-redux';
-import { setReclamo } from '../redux/actions/index';
+import { setLinea } from '../redux/actions/index';
 
 import Card from '../components/CardReclamos';
 import { StyleSheet, View, TouchableOpacity, Text, SafeAreaView } from 'react-native';
@@ -13,7 +13,6 @@ import theme from '../styles';
 const ListReclamos = (props) => {
     const stop = false;
     const [reclamos, setReclamos] = useState([]);
-    const [maxString, setmaxString] = useState(0);
     const [index, setIndex] = useState(null);
     const [selected, setSelected] = useState({});
 
@@ -23,14 +22,13 @@ const ListReclamos = (props) => {
         setReclamos(res.data);
     }
     useEffect(() => {
+        props.setLinea(false)
         getReclamosData();
     },[stop])
         
-    const showMore = (value, index) => {
-        (maxString == 1) ? setmaxString(3) : setmaxString(1);
+    const showMore = (value) => {
         setSelected(value);
         setIndex(index);
-
     }
     function fillTableRow(){
         if (reclamos){
@@ -40,9 +38,9 @@ const ListReclamos = (props) => {
                     <TouchableOpacity key={i}  onPress={(e) =>{ showMore(reclamo, i)}}>
                         {
                             reclamo.numero === selected.numero ? 
-                            <Card reclamo={selected}  maxString={maxString} router={props.data}/>
+                            <Card reclamo={selected} {...props}/>
                             :
-                            <Card reclamo={reclamo} router={props.data}/>
+                            <Card reclamo={reclamo} {...props} />
                         }
                     </TouchableOpacity>
                     );
@@ -116,6 +114,6 @@ const mapStateToProps = ( state ) => {
   }
   
   
-export default connect(mapStateToProps)(ListReclamos);
+export default connect(mapStateToProps, {setLinea})(ListReclamos);
 
 
