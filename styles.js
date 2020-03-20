@@ -23,7 +23,8 @@ const theme = {
     "fontsizes": {
             "t1": 28,
             "t2": 20,
-            "t3": 14,               
+            "t3": 14,   
+            "t4": 17,                 
     },
     "roundness":4
 };
