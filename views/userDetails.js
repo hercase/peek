@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {StyleSheet, Text, View} from 'react-native';
 import { Divider } from 'react-native-paper';
 import Card from '../components/Card';
+import theme from '../styles';
 
 function UserDetails(props) {
 
@@ -19,10 +20,6 @@ function UserDetails(props) {
             <Text style={styles.item}>Zona:</Text>
             <Text style={styles.text}>{ user.descripcion } </Text>
           </View>
-          <View style={styles.line}>
-            <Text style={styles.item}>Localidad:</Text>
-            <Text style={styles.text}>Batan </Text>
-          </View>
         </Card>
       </View>
     );
@@ -31,7 +28,6 @@ function UserDetails(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 10,
   },
   line: {
@@ -39,12 +35,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
   },
   item: {
-    fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: theme.colors.backgroundDark
+  },
 });
 
 const mapStateToProps = ( state ) => {
@@ -52,13 +49,6 @@ const mapStateToProps = ( state ) => {
       values : state.teleReducer
   }
 }
-
-/*const mapDispatchToProps = dispatch => {
-      return {
-        setLineas: data => dispatch(setLineas(data))
-      }
-}*/
-
 
 export default connect(mapStateToProps)(UserDetails);
 

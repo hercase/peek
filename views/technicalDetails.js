@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { dataService } from '../services/users';
 import { StyleSheet, Text, View } from 'react-native';
 import { Divider } from 'react-native-paper';
+import Card from '../components/Card'; 
+import theme from '../styles';
 
 
 const TechnicalDetails = (props) => {
@@ -23,9 +25,11 @@ const TechnicalDetails = (props) => {
   }
   useEffect(() => {
     getDatosTec();
-  },[stop])   
-    return (
+  },[stop])    
+  
+  return (
       <View style={styles.container}>
+        <Card>
         <View style={styles.line}>
           <View>
             <Text style={styles.title}>Catastro</Text>
@@ -53,6 +57,7 @@ const TechnicalDetails = (props) => {
           <Text style={styles.title}>Port: </Text>
           <Text style={styles.text}>{ ports.port }</Text>
         </View>
+        </Card>
       </View>
     );
   }
@@ -60,18 +65,19 @@ const TechnicalDetails = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: 10
   },
   line: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 18,
+    fontSize: 14,
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 17,
+    color: theme.colors.backgroundDark
   },
   flexitem: {
     display: 'flex',

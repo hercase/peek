@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import { Divider } from 'react-native-paper';
+import Card from '../components/Card'; 
+import theme from '../styles';
 
 function ReclamoDetails(props) {
 
@@ -9,7 +11,7 @@ function ReclamoDetails(props) {
     return (
       <ScrollView>
         <View style={styles.container}>
-
+          <Card>
           <View style={styles.line}>
             <Text style={styles.item}>{ '# '+reclamo.numero }</Text>
             <Text style={styles.item}>{reclamo.fecha}</Text> 
@@ -24,6 +26,7 @@ function ReclamoDetails(props) {
             <Text style={styles.item}>Detalle:</Text>
             <Text style={styles.text}>{reclamo.detalle}</Text>
           </View>
+          </Card>
         </View>
       </ScrollView>
 
@@ -33,18 +36,19 @@ function ReclamoDetails(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
+    padding: 10,
   },
   line: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 16,
+    fontSize: 14,
   },
   item: {
-    fontSize: 20,
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: theme.colors.backgroundDark
   }
 });
 
