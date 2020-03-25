@@ -73,7 +73,6 @@ function HomeNavigator( props) {
         >
             <Stack.Screen name="ReclamosView" component={ReclamosView} 
             options={{
-                navigation: props, 
                 headerTitleAlign: 'center',
                 headerTitle: () => ( <BarLogo /> ),
                 headerRight: () => ( <UserMenu /> ),
