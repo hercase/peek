@@ -52,7 +52,6 @@ const Tab = createMaterialTopTabNavigator();
                 { props.values.reclamo &&
                     <Tab.Screen name="Detalle Reclamo" component={ReclamoDetails}
                         options={{
-                            
                             tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={23} /> ),
                         }}
                     />}

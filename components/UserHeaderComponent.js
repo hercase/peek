@@ -5,13 +5,13 @@ import { Text } from 'react-native-paper';
 import theme from '../styles';
 
 function UserHeader(props){
-  const user = props.values.linea;
+
     return (
       <Fragment>
         <View style={styles.header}>
           <View>
-            <Text style={styles.header__title}>{ user.telefono }</Text>
-            <Text style={styles.header__subtitle}>{ user.razon_social }</Text>
+            <Text style={styles.header__title}>{ props.values.linea.telefono }</Text>
+            <Text style={styles.header__subtitle}>{ props.values.linea.razon_social }</Text>
           </View>
         </View>
      </Fragment>
