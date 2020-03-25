@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 
 import { dataService } from '../services/users';
 
 import { connect } from 'react-redux';
 
 import { Card, Text } from 'react-native-paper';
-import { StyleSheet, View, RefreshControl } from 'react-native';
+import { StyleSheet, View, RefreshControl, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import theme from '../styles';
@@ -36,11 +36,6 @@ const ServicesDetails = (props) => {
       });
     }, [refreshing]);
 
-
-    useEffect(() => {
-      getServicesData();
-    },[stop])
-        
         function fillTableRow(){
             if (servicios){
                 return (
@@ -69,14 +64,13 @@ const ServicesDetails = (props) => {
 
         return (
             <View style={{ marginTop: 10 }}>
-              <ScrollView 
-                refreshControl={
-                  <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }
-              >
-                
-                {fillTableRow()}
-                </ScrollView>
+                <ScrollView 
+                  refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                  }
+                >
+                                { getServicesData()  ? fillTableRow() : <ActivityIndicator />}
+                  </ScrollView>
             </View>
         );
 }

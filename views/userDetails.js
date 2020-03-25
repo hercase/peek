@@ -20,10 +20,6 @@ function UserDetails(props) {
             <Text style={styles.item}>Zona:</Text>
             <Text style={styles.text}>{ user.descripcion } </Text>
           </View>
-          <View style={styles.line}>
-            <Text style={styles.item}>Localidad:</Text>
-            <Text style={styles.text}>Batan </Text>
-          </View>
         </Card>
       </View>
     );
@@ -53,13 +49,6 @@ const mapStateToProps = ( state ) => {
       values : state.teleReducer
   }
 }
-
-/*const mapDispatchToProps = dispatch => {
-      return {
-        setLineas: data => dispatch(setLineas(data))
-      }
-}*/
-
 
 export default connect(mapStateToProps)(UserDetails);
 

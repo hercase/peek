@@ -58,56 +58,6 @@ const ListReclamos = (props) => {
     );
 }
 
-const styles = StyleSheet.create({
-    card__title: { 
-        fontSize: 16,
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-    },
-    card_title_numero: { 
-        fontSize: 17,
-    },
-    card_title_fecha: { 
-        textAlign: 'right',
-        fontSize: 14,
-    },
-    card_body_title: {
-        color:  theme.colors.disabled,
-        fontSize: 14,
-    },
-    card_body_desc: {
-        fontSize: 14,
-        
-    },
-    card: {
-        backgroundColor: '#fff',
-        padding: 15 ,
-        margin: 5,
-        borderRadius: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-    },
-    card_content: {
-        backgroundColor: '#fff',
-        padding: 15 ,
-        margin: 5,
-        borderRadius: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-        overflow: 'hidden'
-    },
-});
 
 const mapStateToProps = ( state ) => {
     return {

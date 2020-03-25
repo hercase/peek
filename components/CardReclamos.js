@@ -14,10 +14,6 @@ const CardReclamos = ( props ) => {
    const reclamo = props.reclamo;
    let maxString = 1;
 
-   if (props.maxString){
-        maxString = props.maxString;
-   }
-
    const userInfo = async (value) => {
        let res;
        res = await dataService.getLineas(value);
