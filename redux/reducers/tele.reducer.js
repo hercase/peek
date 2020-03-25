@@ -3,7 +3,7 @@ El reducer es el encargado de gestionar los datos que van a interactuar en el st
 cuando se realice el llamado de la acción correspondiente, 
 el retornara el objeto de datos que se estableció
 */
-import { SET_LINEAS, SET_LINEA, SET_HIDE, SET_RECLAMO, SET_TOKEN } from '../actions/index';
+import { SET_LINEAS, SET_LINEA, SET_HIDE, SET_RECLAMO, SET_TOKEN, LOGOUT } from '../actions/index';
 
 const InitialState = {
     hasError: false,
@@ -18,6 +18,11 @@ export default function teleReducer(state = InitialState, action) {
             return {
                 ...state,
                 token: action.payload,      
+            };
+        case LOGOUT:
+            return {
+                ...state,
+                token: '',      
             };
         case SET_HIDE:
             return {

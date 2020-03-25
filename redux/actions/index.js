@@ -14,6 +14,7 @@ export const SET_RECLAMO = 'SET_RECLAMO';
 
 export const SET_HIDE = 'SET_HIDE';
 export const SET_TOKEN = 'SET_TOKEN';
+export const LOGOUT = 'LOGOUT';
 export const DATA_PENDING = 'DATA_PENDING';
 export const DATA_SUCCESS = 'DATA_SUCCESS';
 
@@ -21,6 +22,12 @@ export function setToken(token){
     return {
         type: SET_TOKEN,
         payload: token,
+    }
+  };
+
+  export function Logout(){
+    return {
+        type: LOGOUT
     }
   };
 
