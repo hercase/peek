@@ -12,19 +12,25 @@ import theme from '../styles';
 
 const ListReclamos = (props) => {
     const stop = false;
-    const [reclamos, setReclamos] = useState([]);
+    const [reclamos, setReclamos] = useState();
     const [index, setIndex] = useState(null);
     const [selected, setSelected] = useState({});
 
     const getReclamosData = async () => {
         //props.setHide(true);
         let res;
-        res =  await dataService.getReclamosZona();
-        setReclamos(res.data);
-        props.setHide(true);
+        if (!reclamos)
+        {
+            res =  await dataService.getReclamosZona();
+            setReclamos(res.data);
+            if (!props.values.hide)
+            {
+                props.setHide(true);
+            }
+        }
     }
     useEffect(() => {
-        props.setLinea(false)
+        //props.setLinea(false)
         getReclamosData();
     },[stop])
         

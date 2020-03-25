@@ -3,19 +3,17 @@ import { connect } from 'react-redux';
 
 import theme from '../styles';
 import { StyleSheet, View, ScrollView, ActivityIndicator  } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import { Text } from 'react-native-paper';
 import ListReclamos from './ListReclamos';
 
 const ReclamosView = ( props ) => {
 
-
     return (
     <View >
       <View style={ styles.view_title }>
-        <Text style={ styles.view_text }>Reclamos</Text>
-            
-        { props.values.hide === false &&
+        <Text style={ styles.view_text }>Reclamos</Text>    
+        { !props.values.hide &&
           <ActivityIndicator size="small" 
             color={theme.colors.disabled}
           />
