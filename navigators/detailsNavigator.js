@@ -29,34 +29,32 @@ const Tab = createMaterialTopTabNavigator();
               }}
               
           >
-                <Tab.Screen name="Detalles" component={UserDetails} initialParams={props.route.params}
+                <Tab.Screen name="Detalles" component={UserDetails} 
                     options={{
                         tabBarIcon: ({ color }) => ( <Icon name="map-marker-alt" color={color} size={23} /> ),
                         }}
                 />
-                <Tab.Screen name="Datos Técnicos" component={TechnicalDetails}  initialParams={props.route.params}
+                <Tab.Screen name="Datos Técnicos" component={TechnicalDetails}  
                     options={{
                         tabBarIcon: ({ color }) => ( <Icon name="tools" color={color} size={23} /> ),
                         }} 
                 />
-                <Tab.Screen name="Historial" component={HistoryDetails}  initialParams={props.route.params} 
+                <Tab.Screen name="Historial" component={HistoryDetails}   
                     options={{
                         tabBarIcon: ({ color }) => ( <Icon name="history" color={color} size={23} /> ),
                         }}
                 />
-                <Tab.Screen name="Servicios" component={ServicesDetails}  initialParams={props.route.params} 
+                <Tab.Screen name="Servicios" component={ServicesDetails}   
                     options={{
                         tabBarIcon: ({ color }) => ( <Icon name="list-alt" color={color} size={23} /> ),
                         }}
                 />
-                { props.values.reclamo ?
-                    <Tab.Screen name="Detalle Reclamo" component={ReclamoDetails} initialParams={props.route.params}
+                { props.values.reclamo &&
+                    <Tab.Screen name="Detalle Reclamo" component={ReclamoDetails}
                         options={{
-                            
                             tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={23} /> ),
                         }}
-                    />
-                    : null }
+                    />}
           </Tab.Navigator>
       </>
   );

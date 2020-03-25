@@ -25,8 +25,9 @@ const TechnicalDetails = (props) => {
   }
   useEffect(() => {
     getDatosTec();
-  },[stop])   
-    return (
+  },[stop])    
+  
+  return (
       <View style={styles.container}>
         <Card>
         <View style={styles.line}>
@@ -58,7 +59,6 @@ const TechnicalDetails = (props) => {
         </View>
         </Card>
       </View>
-
     );
   }
 

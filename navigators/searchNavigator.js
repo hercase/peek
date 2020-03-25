@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Search from '../views/search'
 import DetailsNavigator  from './detailsNavigator';
+import { Icon } from 'react-native-vector-icons/FontAwesome5';
 
 const Stack = createStackNavigator();
 

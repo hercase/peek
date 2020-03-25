@@ -1,27 +1,20 @@
 import React, {useState} from 'react';
 
 import { connect } from 'react-redux';
-import { setHide, setLinea, setReclamo } from '../redux/actions/index';
-
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import theme from '../styles';
 import BarLogo from '../components/barLogo';
 
 import { NavigationContainer } from '@react-navigation/native';
-
 import { createStackNavigator } from '@react-navigation/stack';
-
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
 
 import ReclamosView from '../views/ReclamosView';
 import Search from '../views/search';
-import UserDetails from '../views/userDetails';
-import SearchNavigator  from './searchNavigator';
 import DetailsNavigator  from './detailsNavigator';
 import SignIn from '../views/signIn';
-import search from '../views/search';
+import UserMenu from '../components/UserMenu';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -49,8 +42,8 @@ function TabNavigation(props) {
             <Tab.Screen 
                 name="Reclamos"
                 component={HomeNavigator}
-                initialParams={props} 
                 options={{
+                navigation: {props},
                 tabBarLabel: 'Reclamos',
                 tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={20} /> ),
                 }}
@@ -58,7 +51,6 @@ function TabNavigation(props) {
             <Tab.Screen
                 name="Search"
                 component={Search}
-                initialParams={props} 
                 options={{
                 tabBarLabel: 'Buscar',
                 tabBarIcon: ({ color }) => ( <Icon name="search" color={color} size={20} /> ),
@@ -79,15 +71,14 @@ function HomeNavigator( props) {
             }
           }}
         >
-            <Stack.Screen name="ReclamosView" component={ReclamosView} initialParams={props} 
+            <Stack.Screen name="ReclamosView" component={ReclamosView} 
             options={{
-                navigation: props, 
                 headerTitleAlign: 'center',
                 headerTitle: () => ( <BarLogo /> ),
+                headerRight: () => ( <UserMenu /> ),
             }} 
             />
             <Stack.Screen name="UserInformation" component={DetailsNavigator}
-                initialParams={props} 
                 options={{ 
                     headerTintColor:'white',
                     headerTitle: 'Informacion del usuario',
@@ -111,4 +102,4 @@ const mapStateToProps = ( state ) => {
 }
   
   
-export default connect(mapStateToProps, {setHide, setLinea, setReclamo})(MainNavigation);
+export default connect(mapStateToProps)(MainNavigation);
