@@ -17,7 +17,7 @@ function Search(props) {
 	const [lineas, setLineas] = useState([]);
 	const [value, onChangeValue] = useState('')
 	const [dataload, setLoad] = useState(false)
-	const [message, setMessage] = useState('')
+	const [message, setMessage] = useState()
 
 	const getLineasData = async () => {
 		if ( value.length > 3 ){
