@@ -1,4 +1,4 @@
-import React, {useState, useEffect,useCallback} from 'react';
+import React, {useState } from 'react';
 import theme from '../styles';
 import { dataService } from '../services/users';
 
@@ -11,18 +11,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const HistoryDetails = (props) => {
     const user = props.values.linea;
-    const stop = false;
     const [ordenes, setOrdenes] = useState([]);
 
-    const getOrdenesData = useCallback(async () => {
+    const getOrdenesData = async () => {
         let res;
         res =  await dataService.getOrdenLinea(user.id);
         setOrdenes(res.data);
-    })
-    useEffect(() => {
-      getOrdenesData();
-    },[stop])
-        
+    }
+
         function fillTableRow(){
             if (ordenes){
                 return (
@@ -55,7 +51,7 @@ const HistoryDetails = (props) => {
         };
 
         return (
-            <View style={{ marginTop: 10 }} onRefresh={getOrdenesData}>
+            <View style={{ marginTop: 10 }}>
                 { getOrdenesData()  ?
               <ScrollView>
                 {fillTableRow()}

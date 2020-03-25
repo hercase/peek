@@ -11,6 +11,7 @@ function UserMenu( props ){
 
   const _openMenu = () => setmenuStatus(true);
   const _closeMenu = () => setmenuStatus(false);
+  
     return (
         <View
           style={{

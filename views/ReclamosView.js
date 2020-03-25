@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { setHide } from '../redux/actions/index';
 
 import theme from '../styles';
 import { StyleSheet, View, ScrollView, ActivityIndicator  } from 'react-native';
@@ -10,24 +9,6 @@ import ListReclamos from './ListReclamos';
 
 const ReclamosView = ( props ) => {
 
-  const [refreshing, setRefreshing] = useState(true);
-
-  function wait(timeout) {
-    return new Promise(resolve => {
-      setTimeout(resolve, timeout);
-    });
-  }
-
-
-  const onRefresh = () => {
-    wait(2000).then(() => {
-      setRefreshing(false)
-    });
-  };
-
-  /*useEffect(() => {
-    onRefresh();
-  },[false])*/
 
     return (
     <View >
@@ -42,7 +23,7 @@ const ReclamosView = ( props ) => {
       </View>
       <ScrollView>
         <ListReclamos {...props}/>
-      </ScrollView >
+      </ScrollView>
     </View>
     );
   }
@@ -72,4 +53,4 @@ const mapStateToProps = ( state ) => {
 }
 
 
-export default connect(mapStateToProps, {setHide})(ReclamosView);
+export default connect(mapStateToProps)(ReclamosView);
