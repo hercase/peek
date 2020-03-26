@@ -17,15 +17,22 @@ function Search(props) {
 	const [lineas, setLineas] = useState([]);
 	const [value, onChangeValue] = useState('')
 	const [dataload, setLoad] = useState(false)
-	const [message, setMessage] = useState()
+	const [message, setMessage] = useState('')
 
 	const getLineasData = async () => {
 		if ( value.length > 3 ){
 			setLoad(true);
 			let res;
 			res =	await dataService.getLineas(value);
-			setLineas(res.data);
-			setLoad(false);
+			if ( res.data ) {
+				setLineas(res.data);
+				setLoad(false);
+			} else {
+				setLoad(false);
+				setMessage('No se encuentran resultados.')
+			}
+		} else {
+			setMessage('Debe ingresar mas de 3 caracteres para iniciar la busqueda.')
 		}
 	}
 	
@@ -66,7 +73,7 @@ function Search(props) {
 						</TouchableOpacity>);
 				}));
 				} else { 
-					return <Text style={styles.helper}> Debe ingresar mas de 3 caracteres para iniciar la busqueda. </Text>
+					return <Text style={styles.helper}> { message } </Text>
 				}
 		};
 		return (
@@ -79,7 +86,7 @@ function Search(props) {
 					placeholder="Teléfono o razon social ..." 
 					returnKeyType="search" 
 					onSubmitEditing={getLineasData} 
-					onChangeText={text => {onChangeValue(text), setLineas('')}} 
+					onChangeText={text => {onChangeValue(text), setLineas(''), setMessage('')}} 
 					autoFocus={true}
 				/>
 				{ dataload && <ActivityIndicator />}
