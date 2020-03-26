@@ -13,12 +13,12 @@ function UserDetails(props) {
         <Card>
           <View>
             <Text style={styles.item}>Domicilio</Text>
-            <Text style={styles.text}>{ user.domicilio }</Text>
+            <Text style={styles.text}>{ user.domicilio ? user.domicilio : '***' }</Text>
           </View>
           <Divider style={{ margin: 15 }} />
           <View style={styles.line}>
             <Text style={styles.item}>Zona:</Text>
-            <Text style={styles.text}>{ user.descripcion } </Text>
+            <Text style={styles.text}>{ user.descripcion ? user.descripcion : '***' } </Text>
           </View>
         </Card>
       </View>
