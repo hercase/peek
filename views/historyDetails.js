@@ -11,7 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const HistoryDetails = (props) => {
     //const user = props.values.linea;
-    const [ordenes, setOrdenes] = useState();
+    const [ordenes, setOrdenes] = useState({});
     const [load, setLoad] = useState(false);
 
     const getOrdenesData = async () => {
@@ -26,7 +26,6 @@ const HistoryDetails = (props) => {
     },[])
 
         function fillTableRow(){
-
             if (ordenes){
                 return (
                     ordenes.map((orden, i) => {

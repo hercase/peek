@@ -6,7 +6,7 @@ module.exports = {
 
 
   ReadUsersNroNom: function (oData, oResponse) {
-    let sSQLRead = 'CALL usp_get_app_tele_linea_by_num_razon(?)';
+    let sSQLRead = 'CALL usp_get_tele_linea_by_num_razon(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
       if(oError || oRows[0].length === 0) {

@@ -19,11 +19,14 @@ function Search(props) {
 	const [dataload, setLoad] = useState(false)
 	const [message, setMessage] = useState('')
 
+	// Guarda en State las lineas que coincidan con la busqueda.
 	const getLineasData = async () => {
+		// Ingresa mas de 3 caracteres ??
 		if ( value.length > 3 ){
 			setLoad(true);
 			let res;
 			res =	await dataService.getLineas(value);
+			// Hay respuesta??
 			if ( res.data ) {
 				setLineas(res.data);
 				setLoad(false);
@@ -39,7 +42,7 @@ function Search(props) {
 	const userSelect = (value) => {
 		props.setReclamo(undefined);
 		props.setLinea(value);
-		props.navigation.navigate('UserInformation')
+		props.navigation.navigate('UserInformation', value)
 	}
 
 		function fillTableRow(){
