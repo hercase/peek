@@ -94,25 +94,26 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     card__title: { 
-        fontSize: 16,
+        fontSize: theme.fontsizes.t3,
         display: 'flex',
         justifyContent: 'space-between',
         flexDirection: 'row'
     },
     card_title_numero: { 
         color: '#011627',
-        fontSize: 17,
+        fontSize: theme.fontsizes.t3,
     },
     card_title_fecha: { 
       textAlign: 'right',
       color: theme.colors.primary,
-      fontSize: 14,
+      fontSize: theme.fontsizes.t4,
     },
     card_body_title: {
         color: '#ACB5CA',
     },
     card_body_desc: {
         color: '#42484F',
+        fontSize: theme.fontsizes.t5
     },
 });
 

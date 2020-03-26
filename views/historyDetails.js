@@ -35,11 +35,10 @@ const HistoryDetails = (props) => {
                             <View style={styles.card__title}>
                                 <View>
                                     <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>{"Orden # "+orden.numero}</Text> 
-                                    <Text style={styles.card_body_title} >Inconveniente:</Text>
+                                    <Text style={styles.card_body_desc} >Inconveniente: { orden.inconveniente }</Text>
                                 </View>
                                 <View>
                                     <Text style={styles.card_title_fecha}>{orden.fecha}</Text>
-                                    <Text style={styles.card_body_desc} >{orden.inconveniente}</Text>
                                 </View>
                             </View>
                             <Text style={styles.card_body_title}>Detalle:</Text>
@@ -87,26 +86,27 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     card__title: { 
-        fontSize: 16,
+        fontSize: theme.fontsizes.t3,
         display: 'flex',
         justifyContent: 'space-between',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 5
     },
     card_title_numero: { 
-        fontSize: 17,
+        fontSize: theme.fontsizes.t3,
     },
     card_title_fecha: { 
         textAlign: 'right',
         color: theme.colors.primary,
-        fontSize: 14,
+        fontSize: theme.fontsizes.t4,
     },
     card_body_title: {
         color: theme.colors.disabled,
-        fontSize: 14,
+        fontSize: theme.fontsizes.t4,
     },
     card_body_desc: {
-        fontSize: 14,
-        
+        fontSize: theme.fontsizes.t5,
+        color: theme.colors.text
     },
 });
 
