@@ -4,7 +4,7 @@ import { dataService } from '../services/users';
 
 import { connect } from 'react-redux';
 
-import { Card, Text, ActivityIndicator } from 'react-native-paper';
+import { Card, Text, ActivityIndicator, Divider } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -40,6 +40,7 @@ const HistoryDetails = (props) => {
                                     <Text style={styles.card_title_fecha}>{orden.fecha}</Text>
                                 </View>
                             </View>
+                            <Divider style={{ margin: 5 }} />
                             <Text style={styles.card_body_title}>Detalle:</Text>
                             <Text style={styles.card_body_desc}>{orden.descripcion}</Text>
                             <Text style={styles.card_body_title}>Acciones:</Text>
@@ -85,7 +86,6 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     card__title: { 
-        fontSize: theme.fontsizes.t3,
         display: 'flex',
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     },
     card_body_title: {
         color: theme.colors.disabled,
-        fontSize: theme.fontsizes.t4,
+        fontSize: theme.fontsizes.t5,
     },
     card_body_desc: {
         fontSize: theme.fontsizes.t5,

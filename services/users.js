@@ -14,11 +14,10 @@ export const dataService = {
     getLinea
 };
 
-async function getSigIn(user, pass) {
+async function getSigIn(value) {
   //let data;
     let req = {
-      user: user,
-      pass: pass
+      value: value,
     }
     await api.post('sign_in', req)
     .then(res => {

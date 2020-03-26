@@ -14,11 +14,11 @@ import ServicesDetails from '../views/servicesDetails';
 import theme from '../styles';
 const Tab = createMaterialTopTabNavigator();
 
- function DetailsNavigator(props) {
-  return (
-      <>
-          <UserHeader/>
-          <Tab.Navigator
+    function DetailsNavigator(props) {
+    return (
+        <>
+        <UserHeader/>
+        <Tab.Navigator
             tabBarOptions={{
                 showIcon: true,
                 showLabel: false,
@@ -26,9 +26,8 @@ const Tab = createMaterialTopTabNavigator();
                 indicatorStyle: { backgroundColor: theme.colors.primary },
                 activeTintColor: theme.colors.primary,
                 inactiveTintColor: theme.colors.disabled,
-              }}
-              
-          >
+            }}
+        >
                 <Tab.Screen name="Detalles" component={UserDetails} 
                     options={{
                         tabBarIcon: ({ color }) => ( <Icon name="map-marker-alt" color={color} size={23} /> ),
@@ -55,15 +54,14 @@ const Tab = createMaterialTopTabNavigator();
                             tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={23} /> ),
                         }}
                     />}
-          </Tab.Navigator>
-      </>
-  );
+            </Tab.Navigator>
+        </>
+    );
 }
 const mapStateToProps = ( state ) => {
     return {
         values : state.teleReducer
     }
-  }
-  
-  
-  export default connect(mapStateToProps)(DetailsNavigator);
+}
+
+export default connect(mapStateToProps)(DetailsNavigator);
