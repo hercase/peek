@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 14,
+    fontSize: theme.fontsizes.t4,
   },
   item: {
     fontWeight: 'bold',
-    fontSize: 17,
+    fontSize: theme.fontsizes.t3,
     color: theme.colors.backgroundDark
   },
 });
