@@ -43,7 +43,6 @@ function TabNavigation(props) {
                 name="Reclamos"
                 component={HomeNavigator}
                 options={{
-                navigation: {props},
                 tabBarLabel: 'Reclamos',
                 tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={20} /> ),
                 }}
@@ -61,7 +60,7 @@ function TabNavigation(props) {
 }
 
 
-function HomeNavigator( props) {
+function HomeNavigator() {
     return (
         <Stack.Navigator
         initialRouteName="ReclamosView"          
