@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 
 import { dataService } from '../services/users';
 
@@ -35,6 +35,9 @@ const ServicesDetails = (props) => {
       });
     }, [refreshing]);
 
+    useEffect(() => {
+      getServicesData();
+    },[user])
         function fillTableRow(){
             if (servicios){
                 return (
@@ -68,8 +71,8 @@ const ServicesDetails = (props) => {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[theme.colors.primary]} progressBackgroundColor={theme.colors.backgroundDark}/>
                   }
                 >
-                                { getServicesData()  && fillTableRow() }
-                  </ScrollView>
+                  { fillTableRow() }
+                </ScrollView>
             </View>
         );
 }
