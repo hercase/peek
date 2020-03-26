@@ -18,15 +18,8 @@ api.post('/read_users', function(oReq, oRes) {
    telefonia.ReadUsers(oData, oRes);
 });
 
-api.post('/read_user', function(oReq, oRes) {
-  let oData = {};
-  oData = oReq.body; 
-  telefonia.ReadUser(oData, oRes);
-});
-
 api.post('/read_users_nro_nom', function(oReq, oRes) {
   let oData = {};
-
   oData = oReq.body; 
   telefonia.ReadUsersNroNom(oData, oRes);
  

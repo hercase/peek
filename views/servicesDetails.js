@@ -12,7 +12,6 @@ import theme from '../styles';
 
 const ServicesDetails = (props) => {
     const user = props.values.linea;
-    const stop = false;
 
     const [servicios, setServicios] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
@@ -56,9 +55,9 @@ const ServicesDetails = (props) => {
                     })
                 )
             } else {
-              return (
-                <Text style={{ textAlign: 'center', marginTop: 20, color: theme.colors.primary }}> Sin servicios de telefonía </Text>
-                );
+                return (
+                  <Text style={{ textAlign: 'center', marginTop: 100, color: theme.colors.primary }}> Sin servicios de telefonía </Text>
+                  );
             }
         };
 
@@ -66,10 +65,10 @@ const ServicesDetails = (props) => {
             <View style={{ marginTop: 10 }}>
                 <ScrollView 
                   refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[theme.colors.primary]} progressBackgroundColor={theme.colors.backgroundDark}/>
                   }
                 >
-                                { getServicesData()  ? fillTableRow() : <ActivityIndicator />}
+                                { getServicesData()  && fillTableRow() }
                   </ScrollView>
             </View>
         );
