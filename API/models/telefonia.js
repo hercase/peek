@@ -123,7 +123,7 @@ ReadDatosTecnicos: function (oData, oResponse) {
   },
 
 
-  ReadReclamosZona: function (oData, oResponse) {
+  ReadReclamosZona: function (oResponse) {
   
     let sSQLRead = 'CALL usp_get_tele_reclamos_by_zona';
     //var data = [oData.account_id];

@@ -1,7 +1,8 @@
-import { api } from './apiPoint';
+import {AsyncStorage} from 'react-native';
+import axios from 'axios';
 
 export const dataService = {
-    getAllLineas,
+    //getAllLineas,
     getLineas, 
     getReclamosZona,
     getReclamosLinea,
@@ -13,9 +14,28 @@ export const dataService = {
     getSigIn, 
     getLinea
 };
+const api = 'http://192.168.0.59:4000'
 
 async function getSigIn(value) {
   //let data;
+  let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/sign_in`,
+      headers: { 'Content-Type': 'application/json'},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+/*
     let req = {
       value: value,
     }
@@ -24,21 +44,30 @@ async function getSigIn(value) {
       data = res.data;
     })
     .catch((error) => console.warn("fetch error:", error))
-    return data;
-}
-
-async function getAllLineas() {
-    //let res = '';
-    let data;
-    await api.post('read_users')
-    .then(res => {
-        data = res.data;
-    })
-    return data;
+    return data;*/
 }
 
  async function getLineas(value) {
+  const token = await AsyncStorage.getItem('token');
   let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_users_nro_nom`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+
+ /*let data;
     let req = {
       value: value
     }
@@ -47,11 +76,30 @@ async function getAllLineas() {
         data = res.data;
     })
     .catch((error) => console.warn("fetch error:", error))
-    return data;
+    return data;*/
 }
 
 async function getLinea(value) {
+  const token = await AsyncStorage.getItem('token');
   let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_user`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+
+ /* let data;
     let req = {
       value: value
     }
@@ -60,11 +108,30 @@ async function getLinea(value) {
         data = res.data;
     })
     .catch((error) => console.warn("fetch error:", error))
-    return data;
+    return data;*/
 }
 
 async function getDatosTecnicos(value) {
+  const token = await AsyncStorage.getItem('token');
   let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_datos_tec`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+
+  /*let data;
     let req = {
       value: value
     }
@@ -73,11 +140,30 @@ async function getDatosTecnicos(value) {
         data = res.data;
     })
     .catch((error) => console.warn("fetch error:", error))
-    return data;
+    return data;*/
 }
 
 async function getCablePares(value) {
+  const token = await AsyncStorage.getItem('token');
   let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_cable_pares`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+
+/*  let data;
     let req = {
       value: value
     }
@@ -86,30 +172,63 @@ async function getCablePares(value) {
         data = res.data;
     })
     .catch((error) => console.warn("fetch error:", error))
-    return data;
+    return data;*/
 }
 
 async function getPorts(value) {
+  const token = await AsyncStorage.getItem('token');
   let data;
-    let req = {
-      value: value
-    }
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_ports`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+  /*let data;
+
     await api.post('read_ports', req)
     .then(res => {
         data = res.data;
     })
     .catch((error) => console.warn("fetch error:", error))
-    return data;
+    return data;*/
 }
 
 async function getReclamosZona() {
-  let data;
+  /*api.headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+
+  
   await api.post('read_reclamos_zona')
   .then(res => {
       data = res.data;
   })
   .catch((error) => console.warn("fetch error:", error))
-  return data;
+  return data;*/
+  const token = await AsyncStorage.getItem('token');
+  let data;
+  const options = {
+      method: 'post',
+      url: `${api}/read_reclamos_zona`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+return data;
+
 }
 
 async function getReclamosLinea() {
@@ -124,6 +243,25 @@ async function getReclamosLinea() {
 
 
 async function getServiciosLinea(value) {
+  const token = await AsyncStorage.getItem('token');
+  let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_servicios_linea`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+/*
   let data;
     let req = {
       value: value
@@ -134,9 +272,29 @@ async function getServiciosLinea(value) {
     })
     .catch((error) => console.warn("fetch error:", error))
     return data;
+    */
 }
 
 async function getOrdenLinea(value) {
+  const token = await AsyncStorage.getItem('token');
+  let data;
+  let req = {
+    value: value
+  }
+  const options = {
+      method: 'post',
+      url: `${api}/read_orden_linea`,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      data : req
+  }
+  await axios(options)  
+  .then(res => {
+    data = res.data;
+  })
+  .catch((error) => console.warn("fetch error:", error))
+
+  return data;
+  /*
   let data;
     let req = {
       value: value
@@ -147,4 +305,5 @@ async function getOrdenLinea(value) {
     })
     .catch((error) => console.warn("fetch error:", error))
     return data;
+    */
 }

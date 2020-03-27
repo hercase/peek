@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View, Image, AsyncStorage} from 'react-native';
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
 import { dataService } from '../services/users';
@@ -16,7 +16,8 @@ function SignIn(props) {
     let res;
     res = await dataService.getSigIn(uniqueID);
     if (res.error === false)
-    {   
+    { 
+      await AsyncStorage.setItem('token', res.data.token);  
       setIsLoading(false)
       props.setToken(res.data.token);
     } else {
