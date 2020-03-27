@@ -17,17 +17,20 @@ import DetailsNavigator  from './detailsNavigator';
 import SignIn from '../views/signInView';
 import UserMenu from '../components/UserMenu';
 
+import {asyncService} from '../services/asyncStorage';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 function MainNavigation(props) {
+
+    
     return (
         <NavigationContainer >
-            {props.values.token !== "" ?
-            <TabNavigation {...props} />
-            : <SignIn />
-        }
+            {  props.values.token !== "" ?
+                <TabNavigation {...props} />
+                : <SignIn />
+            }
         </NavigationContainer>
     );
 }

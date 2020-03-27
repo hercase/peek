@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
 
@@ -21,7 +21,6 @@ function SignIn(props) {
     res = await dataService.getSigIn(uniqueID);
     if (res.error === false)
     { 
-      await AsyncStorage.setItem('token', res.data.token);  
       setIsLoading(false)
       props.setToken(res.data.token);
     } else {
