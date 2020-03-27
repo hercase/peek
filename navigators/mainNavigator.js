@@ -17,7 +17,7 @@ import DetailsNavigator  from './detailsNavigator';
 import SignIn from '../views/signInView';
 import UserMenu from '../components/UserMenu';
 
-
+import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
