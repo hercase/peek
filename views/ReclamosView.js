@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setLinea, setHide } from '../redux/actions/index';
-import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { setLinea, setHide, setCantidadReclamos } from '../redux/actions/index';
+import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity, RefreshControl } from 'react-native';
 import { Text } from 'react-native-paper';
 import { dataService } from '../services/users';
 import ContentLoader, { Rect } from "react-content-loader/native"
@@ -13,14 +13,12 @@ import Card from '../components/CardReclamos';
 // Vista de reclamos.
 const ReclamosView = ( props ) => {
 	return (
-		<View >
+		<View style={{ marginBottom: 55 }}>
 			<View style={ styles.view_title }>
 				<Text style={ styles.view_text }>Reclamos</Text>
                 { props.values.hide === false && <ActivityIndicator size="small" color={theme.colors.disabled} />}
 			</View>
-			<ScrollView>
-				<ListReclamos {...props}/>
-			</ScrollView>
+			<ListReclamos {...props}/>
 		</View>
     );
 };
@@ -30,12 +28,15 @@ const ListReclamos = (props) => {
     const stop = false;
     const [reclamos, setReclamos] = useState([]);
     const [index, setIndex] = useState(null);
-    const [selected, setSelected] = useState({});
+	const [selected, setSelected] = useState({});
+	const [refreshing, setRefreshing] = useState(false);
 
     const getReclamosData = async () => {
         let res;
-        res =  await dataService.getReclamosZona();
-        setReclamos(res.data);
+		res =  await dataService.getReclamosZona();
+		setReclamos(res.data);
+		setRefreshing(false)
+		props.setCantidadReclamos(res.data.length)
 		props.setHide(true);
 	}
 
@@ -75,9 +76,19 @@ const ListReclamos = (props) => {
     };
 
     return (
-        <View style={{ margin: 10 }}>
-			{ fillTableRow() }
-        </View>
+			<ScrollView  
+				style={{ backgroundColor: theme.colors.background }}
+				refreshControl={ 
+					<RefreshControl 
+						refreshing={refreshing} 
+						colors={[theme.colors.primary]} 
+						progressBackgroundColor={theme.colors.backgroundDark} 
+						onRefresh={getReclamosData} 
+					/> 
+				}
+			>
+				{ fillTableRow() }
+			</ScrollView>
     );
 };
 
@@ -125,4 +136,4 @@ const mapStateToProps = ( state ) => {
 	}
 }
 
-export default connect(mapStateToProps, { setLinea, setHide })(ReclamosView);
+export default connect(mapStateToProps, { setLinea, setHide, setCantidadReclamos })(ReclamosView);

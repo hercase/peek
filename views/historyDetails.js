@@ -11,7 +11,11 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const HistoryDetails = (props) => {
     const user = props.values.linea;
+<<<<<<< HEAD
     const [ordenes, setOrdenes] = useState([]);
+=======
+    const [ordenes, setOrdenes] = useState();
+>>>>>>> a99015b7e99459baa1818a6d6c5ae057fda5b660
     const [load, setLoad] = useState(false);
 
     const getOrdenesData = async () => {

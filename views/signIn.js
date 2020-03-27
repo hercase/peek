@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import {StyleSheet, View, Image, AsyncStorage} from 'react-native';
+=======
+import {StyleSheet, View, Image} from 'react-native';
+
+>>>>>>> a99015b7e99459baa1818a6d6c5ae057fda5b660
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
+
 import { dataService } from '../services/users';
 import theme from '../styles';
+
 import DeviceInfo from 'react-native-device-info';
-import { Button } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 
 function SignIn(props) {
   const [ isLoading, setIsLoading ] = useState(false);
+  const [ error, setError ] = useState(false);
   const uniqueID = DeviceInfo.getUniqueId();
   
-  const submit = async () => {
+  const handleSubmit = async () => {
     setIsLoading(true)
     let res;
     res = await dataService.getSigIn(uniqueID);
@@ -22,15 +30,19 @@ function SignIn(props) {
       props.setToken(res.data.token);
     } else {
       setIsLoading(false)
+      setError(true)
     }
   }
 
     return (
       <View style={styles.container}>
           <Image style={styles.logo} source={require('../assets/peek-dark.png')} />
-          <Button style={styles.button}  loading={isLoading} icon="lock" mode="contained" onPress={() => submit()}>
-            Validar Identidad
-          </Button>
+          <View style={{ height: 60 }}>
+            <Button style={styles.button}  loading={isLoading} icon="lock" mode="contained" onPress={() => handleSubmit()}>
+              Validar Identidad
+            </Button>
+            { error && <Text style={styles.error}> SIN AUTORIZACIÓN </Text> }
+          </View>
       </View>
     );
   }
@@ -51,8 +63,14 @@ const styles = StyleSheet.create({
     marginBottom: 50
     },
   button: {
-    width: 200
-  }
+    width: 200,
+  },
+  error: {
+    color: theme.colors.primary,
+    fontSize: theme.fontsizes.t5,
+		textAlign: 'center',
+    marginVertical: 15,
+	},
 });
 
 

@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 
 import { connect } from 'react-redux';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import IconWithBadge from '../components/IconWithBadge';
 import theme from '../styles';
 import BarLogo from '../components/barLogo';
+
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,6 +16,7 @@ import Search from '../views/search';
 import DetailsNavigator  from './detailsNavigator';
 import SignIn from '../views/signIn';
 import UserMenu from '../components/UserMenu';
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -44,7 +46,7 @@ function TabNavigation(props) {
                 component={HomeNavigator}
                 options={{
                 tabBarLabel: 'Reclamos',
-                tabBarIcon: ({ color }) => ( <Icon name="file-invoice" color={color} size={20} /> ),
+                tabBarIcon:  ({ color }) => ( <IconWithBadge name="file-invoice" color={color} size={20} badge={props.values.reclamos}/> ),
                 }}
             />
             <Tab.Screen
@@ -52,7 +54,7 @@ function TabNavigation(props) {
                 component={Search}
                 options={{
                 tabBarLabel: 'Buscar',
-                tabBarIcon: ({ color }) => ( <Icon name="search" color={color} size={20} /> ),
+                tabBarIcon: ({ color }) => ( <IconWithBadge name="search" color={color} size={20}/> ),
                 }}
             />
         </Tab.Navigator>
@@ -63,12 +65,12 @@ function TabNavigation(props) {
 function HomeNavigator() {
     return (
         <Stack.Navigator
-        initialRouteName="ReclamosView"          
+        initialRouteName="ReclamosView"     
         screenOptions={{
             headerStyle: {
-              backgroundColor: theme.colors.backgroundDark,
+                backgroundColor: theme.colors.backgroundDark,
             }
-          }}
+        }}
         >
             <Stack.Screen name="ReclamosView" component={ReclamosView} 
             options={{
