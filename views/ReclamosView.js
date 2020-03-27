@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { setLinea, setHide, setCantidadReclamos } from '../redux/actions/index';
 import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity, RefreshControl } from 'react-native';
@@ -35,10 +35,23 @@ const ListReclamos = (props) => {
         let res;
 		res =  await dataService.getReclamosZona();
 		setReclamos(res.data);
-		setRefreshing(false)
 		props.setCantidadReclamos(res.data.length)
 		props.setHide(true);
+		//setRefreshing(false)
 	}
+	function wait(timeout) {
+		return new Promise(resolve => {
+		  setTimeout(resolve, timeout);
+		});
+	  }
+
+	const onRefresh = useCallback(() => {
+		setRefreshing(true);
+		getReclamosData();
+		wait(2000).then(() => {
+			setRefreshing(false);
+		});
+	  }, [refreshing]);
 
     useEffect(() => {
         props.setLinea(false)
@@ -83,7 +96,7 @@ const ListReclamos = (props) => {
 						refreshing={refreshing} 
 						colors={[theme.colors.primary]} 
 						progressBackgroundColor={theme.colors.backgroundDark} 
-						onRefresh={getReclamosData} 
+						onRefresh={onRefresh} 
 					/> 
 				}
 			>

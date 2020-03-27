@@ -4,6 +4,7 @@ cuando se realice el llamado de la acción correspondiente,
 el retornara el objeto de datos que se estableció
 */
 import { SET_LINEAS, SET_LINEA, SET_HIDE, SET_RECLAMO, SET_CANTIDAD_RECLAMOS, SET_TOKEN, LOGOUT } from '../actions/index';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const InitialState = {
     hasError: false,
@@ -16,11 +17,13 @@ const InitialState = {
 export default function teleReducer(state = InitialState, action) {
     switch(action.type) {
         case SET_TOKEN:
+            AsyncStorage.setItem('token', action.payload) 
             return {
                 ...state,
                 token: action.payload,      
             };
         case LOGOUT:
+            AsyncStorage.removeItem('token') 
             return {
                 ...state,
                 token: '',      

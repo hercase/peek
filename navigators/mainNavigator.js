@@ -17,17 +17,20 @@ import DetailsNavigator  from './detailsNavigator';
 import SignIn from '../views/signInView';
 import UserMenu from '../components/UserMenu';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import {asyncService} from '../services/asyncStorage';
+
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
-async function MainNavigation(props) {
+function MainNavigation(props) {
+
+    
     return (
         <NavigationContainer >
-            {await AsyncStorage.getItem('token')  !== "" ?
-            <TabNavigation {...props} />
-            : <SignIn />
-        }
+            {  props.values.token !== "" ?
+                <TabNavigation {...props} />
+                : <SignIn />
+            }
         </NavigationContainer>
     );
 }
