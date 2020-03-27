@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Image, AsyncStorage} from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
 
