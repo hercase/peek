@@ -7,7 +7,6 @@ module.exports = {
 
 	generateToken: function (user) {
 	  let u = {
-	  	id_user: user.id,
 	   	username: user.username
 	  }
 	  return token = jwt.sign(u, key_token, {
