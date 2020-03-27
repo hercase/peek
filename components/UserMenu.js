@@ -28,8 +28,8 @@ function UserMenu( props ){
             contentStyle={{ backgroundColor: theme.colors.backgroundLight }}
             anchor={ <IconButton size={25} onPress={ _openMenu } icon="account" color={ theme.colors.disabled } /> }
           >
-            <Menu.Item onPress={() => {}} title="Perfil" />
-            <Divider />
+            {/* <Menu.Item onPress={() => {}} title="Perfil" /> */}
+            {/* <Divider /> */}
             <Menu.Item onPress={() => { props.Logout() }} title="Salir" />
           </Menu>
         </View>

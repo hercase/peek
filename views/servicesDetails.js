@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 
 import { dataService } from '../services/users';
 
@@ -12,7 +12,6 @@ import theme from '../styles';
 
 const ServicesDetails = (props) => {
     const user = props.values.linea;
-    const stop = false;
 
     const [servicios, setServicios] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
@@ -36,6 +35,9 @@ const ServicesDetails = (props) => {
       });
     }, [refreshing]);
 
+    useEffect(() => {
+      getServicesData();
+    },[user])
         function fillTableRow(){
             if (servicios){
                 return (
@@ -56,9 +58,9 @@ const ServicesDetails = (props) => {
                     })
                 )
             } else {
-              return (
-                <Text style={{ textAlign: 'center', marginTop: 20, color: theme.colors.primary }}> Sin servicios de telefonía </Text>
-                );
+                return (
+                  <Text style={{ textAlign: 'center', marginTop: 100, color: theme.colors.primary }}> Sin servicios de telefonía </Text>
+                  );
             }
         };
 
@@ -66,11 +68,11 @@ const ServicesDetails = (props) => {
             <View style={{ marginTop: 10 }}>
                 <ScrollView 
                   refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[theme.colors.primary]} progressBackgroundColor={theme.colors.backgroundDark}/>
                   }
                 >
-                                { getServicesData()  ? fillTableRow() : <ActivityIndicator />}
-                  </ScrollView>
+                  { fillTableRow() }
+                </ScrollView>
             </View>
         );
 }
@@ -92,25 +94,26 @@ const styles = StyleSheet.create({
         borderRadius: 15,
     },
     card__title: { 
-        fontSize: 16,
+        fontSize: theme.fontsizes.t3,
         display: 'flex',
         justifyContent: 'space-between',
         flexDirection: 'row'
     },
     card_title_numero: { 
         color: '#011627',
-        fontSize: 17,
+        fontSize: theme.fontsizes.t3,
     },
     card_title_fecha: { 
       textAlign: 'right',
       color: theme.colors.primary,
-      fontSize: 14,
+      fontSize: theme.fontsizes.t4,
     },
     card_body_title: {
         color: '#ACB5CA',
     },
     card_body_desc: {
         color: '#42484F',
+        fontSize: theme.fontsizes.t5
     },
 });
 

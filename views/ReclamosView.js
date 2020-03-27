@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
 import { setLinea, setHide } from '../redux/actions/index';
 import { StyleSheet, View, ScrollView, ActivityIndicator, TouchableOpacity } from 'react-native';
-=======
-
-import theme from '../styles';
-import { StyleSheet, View, ScrollView, ActivityIndicator  } from 'react-native';
-
->>>>>>> 5cb2a405f2b08dfac085683d336728832de4a177
 import { Text } from 'react-native-paper';
 import { dataService } from '../services/users';
 import ContentLoader, { Rect } from "react-content-loader/native"

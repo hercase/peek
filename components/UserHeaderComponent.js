@@ -10,8 +10,8 @@ function UserHeader(props){
       <Fragment>
         <View style={styles.header}>
           <View>
-            <Text style={styles.header__title}>{ props.values.linea.telefono }</Text>
-            <Text style={styles.header__subtitle}>{ props.values.linea.razon_social }</Text>
+            <Text style={styles.header__title}>{ props.values.linea.telefono ? props.values.linea.telefono : '***' }</Text>
+            <Text style={styles.header__subtitle}>{ props.values.linea.razon_social ? props.values.linea.razon_social : '***'}</Text>
           </View>
         </View>
      </Fragment>

@@ -33,7 +33,7 @@ const TechnicalDetails = (props) => {
         <View style={styles.line}>
           <View>
             <Text style={styles.title}>Catastro</Text>
-            <Text style={styles.text}>{ datosTec.catastro }</Text>
+            <Text style={styles.text}>{ datosTec && datosTec.catastro}</Text>
           </View>
           <View>
             <Text style={styles.title}>Shelter</Text>
@@ -43,7 +43,7 @@ const TechnicalDetails = (props) => {
         <Divider style={{ margin: 15}} />
         <View style={styles.line}>
           <Text style={styles.title}>N° - Tipo Caja:</Text>
-          <Text style={styles.text}>{ datosTec.nro_tipo_caja }</Text>
+          <Text style={styles.text}>{ datosTec && datosTec.nro_tipo_caja }</Text>
         </View>
         <View style={styles.line}>
           <Text style={styles.title}>Cable: </Text>
@@ -55,7 +55,7 @@ const TechnicalDetails = (props) => {
         </View>
         <View style={styles.line}>
           <Text style={styles.title}>Port: </Text>
-          <Text style={styles.text}>{ ports.port }</Text>
+          <Text style={styles.text}>{ ports && ports.port }</Text>
         </View>
         </Card>
       </View>
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: 14,
+    fontSize: theme.fontsizes.t4,
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 17,
+    fontSize: theme.fontsizes.t3,
     color: theme.colors.backgroundDark
   },
   flexitem: {

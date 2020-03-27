@@ -1,85 +1,43 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
-import {TextInput, Snackbar} from 'react-native-paper'
+import React, { useState } from 'react';
+import {StyleSheet, View, Image} from 'react-native';
+
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
+
 import { dataService } from '../services/users';
 import theme from '../styles';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+
+import DeviceInfo from 'react-native-device-info';
+import { Button, Text } from 'react-native-paper';
 
 function SignIn(props) {
-  const [user, onChangeText] = useState('')
-  const [pass, onChangePass] = useState('')
-  const [error, setError] = useState(false)
-  let inputs = {};
-  const focusTheField = (id) => {
-    inputs[id].focus();
-  }
-
-  const submit = async () => {
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ error, setError ] = useState(false);
+  const uniqueID = DeviceInfo.getUniqueId();
+  
+  const handleSubmit = async () => {
+    setIsLoading(true)
     let res;
-    res = await dataService.getSigIn(user, pass);
+    res = await dataService.getSigIn(uniqueID);
     if (res.error === false)
     {   
+      setIsLoading(false)
       props.setToken(res.data.token);
     } else {
-      setError(true);
+      setIsLoading(false)
+      setError(true)
     }
   }
+
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1, justifyContent: 'flex-end'}}>
           <Image style={styles.logo} source={require('../assets/peek-dark.png')} />
-        </View>
-        <View style={{ flex: 1, flexGrow: 1, justifyContent: "center", margin: 50}}>
-          <TextInput style={styles.input}
-            dense={true}
-            autoFocus={true}
-            mode='outlined'
-            placeholderTextColor={theme.colors.disabled}
-            autoCompleteType='username'
-            placeholder="Usuario" 
-            returnKeyType="next" 
-            onChangeText={text => {onChangeText(text)}}
-            onSubmitEditing={() => { focusTheField('password') }}
-            ref={input => { inputs['user'] = input }}
-          />
-          <TextInput style={styles.input}
-            dense={true}
-            ref={input => { inputs['password'] = input }}
-            mode='outlined'
-            placeholderTextColor={theme.colors.disabled}
-            autoCompleteType='password'
-            placeholder="Contraseña"
-            returnKeyType="go"
-            secureTextEntry={true} 
-            onChangeText={text => {onChangePass(text)}} 
-            onSubmitEditing={(e) => submit()}
-            /> 
+          <View style={{ height: 60 }}>
+            <Button style={styles.button}  loading={isLoading} icon="lock" mode="contained" onPress={() => handleSubmit()}>
+              Validar Identidad
+            </Button>
+            { error && <Text style={styles.error}> SIN AUTORIZACIÓN </Text> }
           </View>
-        <View style={{ flex: 1 }}> 
-          <View style={styles.buttonContainer}>   
-            <TouchableOpacity 
-              style={styles.button}
-              onPress = {(e) => submit()}
-            >
-              <Text style={{fontSize: 18, color: 'white' }}>INGRESAR</Text>
-              <Icon name='chevron-right' style={styles.icon}/>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <Snackbar
-          duration={Snackbar.DURATION_SHORT}
-          style={{backgroundColor: theme.colors.background}}
-          visible={error}
-          onDismiss={() => setError(false)}
-          action={{
-            label: 'OK',
-            onPress: () => { focusTheField('user') },
-          }}
-        >
-          <Text style={{color: theme.colors.text}}>Los datos de ingreso son invalidos.</Text>
-        </Snackbar>
       </View>
     );
   }
@@ -88,45 +46,26 @@ function SignIn(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     padding: 20,
     backgroundColor: theme.colors.backgroundDark,
-  },
-  input: {
-    backgroundColor: theme.colors.backgroundLight,   
-    margin: 5,
-    fontSize: 18,
-    textAlign: 'center',
-    width: 250,
-  },
-  button: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    backgroundColor: theme.colors.accent,
-    height: 45,
-    width: 160,
-    borderRadius: 50,
-    
-  },
-  font: {
-    color: theme.colors.background, 
-    fontSize: 15,
-    letterSpacing: 1,
-  },
-  icon: {
-    color: theme.colors.background, 
-    fontSize: 18,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   logo: {
-    height: 85, 
+    height: 100, 
     width: 300,
     resizeMode: 'contain',
-    }
-  ,
-  buttonContainer: {
-    alignItems: 'center',
-  }
+    marginBottom: 50
+    },
+  button: {
+    width: 200,
+  },
+  error: {
+    color: theme.colors.primary,
+    fontSize: theme.fontsizes.t5,
+		textAlign: 'center',
+    marginVertical: 15,
+	},
 });
 
 
