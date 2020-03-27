@@ -11,7 +11,7 @@ y dependiendo el caso de uso se hace el llamado
 export const SET_LINEAS = 'SET_LINEAS';
 export const SET_LINEA = 'SET_LINEA';
 export const SET_RECLAMO = 'SET_RECLAMO';
-
+export const SET_CANTIDAD_RECLAMOS = 'SET_CANTIDAD_RECLAMOS';
 export const SET_HIDE = 'SET_HIDE';
 export const SET_TOKEN = 'SET_TOKEN';
 export const LOGOUT = 'LOGOUT';
@@ -70,6 +70,13 @@ export function setReclamo(reclamo){
         payload: reclamo,
     }
   };
+
+export function setCantidadReclamos(cantidad){
+    return {
+        type: SET_CANTIDAD_RECLAMOS,
+        payload: cantidad,
+    }
+};
 
 /*export const fetchData = () => {
     return (dispatch) => {
