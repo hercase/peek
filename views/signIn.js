@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import {StyleSheet, View, Image, AsyncStorage} from 'react-native';
-=======
-import {StyleSheet, View, Image} from 'react-native';
-
->>>>>>> a99015b7e99459baa1818a6d6c5ae057fda5b660
 import { connect } from 'react-redux';
 import { setToken } from '../redux/actions/index';
 
