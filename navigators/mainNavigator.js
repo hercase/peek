@@ -21,10 +21,10 @@ import UserMenu from '../components/UserMenu';
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
-function MainNavigation(props) {
+async function MainNavigation(props) {
     return (
         <NavigationContainer >
-            {props.values.token !== "" ?
+            {await AsyncStorage.getItem('token')  !== "" ?
             <TabNavigation {...props} />
             : <SignIn />
         }
