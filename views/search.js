@@ -76,7 +76,7 @@ function Search(props) {
 						</TouchableOpacity>);
 				}));
 				} else { 
-					return <Text style={styles.helper}> { message } </Text>
+					return <Text style={styles.error}> { message } </Text>
 				}
 		};
 		return (
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
 		color: '#FFF',
 		borderRadius: 30,
 	},
-	helper: {
+	error: {
 		color: theme.colors.primary,
 		textAlign: 'center',
 		marginTop: 20,

@@ -5,11 +5,11 @@ let oRespData = {};
 module.exports = {
 
   SignIn: function (oData, oResponse) {
-    console.warn(oData)
     let sSQLRead = 'CALL usp_get_login_user(?)';
     let data = [oData.value];
     oMyConnection.query(sSQLRead, data, function(oError, oRows, oCols) {
       if(oError || oRows[0].length === 0) {
+        console.log('Failed UID: ' + oData.value)
         oRespData = {
           error: true,
           error_object: oError
@@ -18,6 +18,8 @@ module.exports = {
       else
       {       
         let token = jwt.generateToken(oData.value);
+        let user = oRows[0][0].username;
+        console.log('Logged: ' + user)
         data = {
           token: token
         }
