@@ -11,10 +11,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-import ReclamosView from '../views/ReclamosView';
-import Search from '../views/search';
+import ReclamosView from '../views/reclamosView';
+import Search from '../views/searchView';
 import DetailsNavigator  from './detailsNavigator';
-import SignIn from '../views/signIn';
+import SignIn from '../views/signInView';
 import UserMenu from '../components/UserMenu';
 
 
@@ -84,14 +84,6 @@ function HomeNavigator() {
                     headerTintColor:'white',
                     headerTitle: 'Informacion del usuario',
             }} />
-            
-            <Stack.Screen name="Search" component={Search} 
-            options={{
-              headerTitleAlign: 'center',
-              headerTitle: () => ( <BarLogo /> ),
-          }}
-          /> 
-
         </Stack.Navigator>
     );
 }

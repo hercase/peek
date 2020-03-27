@@ -16,7 +16,7 @@ import store from './redux/store';
 import {  Provider as PaperProvider } from 'react-native-paper';
 
 import MainNavigation from './navigators/mainNavigator';
-import SignIn from './views/signIn';
+import SignIn from './views/signInView';
 
 function App() {
   return (
