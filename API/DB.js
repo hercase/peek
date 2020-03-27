@@ -5,8 +5,8 @@ var db_config = {
 	connectionLimit: 100,
 	host: 'localhost',
 	user: 'peek',
-	password: 'P33k',
-	database: 'autogestion'
+   	password: 'P33k',
+   	database: 'autogestion'
 }
 
 oMyConnection = mysql.createPool(db_config); 
